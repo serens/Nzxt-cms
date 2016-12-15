@@ -2,7 +2,6 @@
 namespace Nzxt;
 
 use Nzxt\Controller\FrontendController;
-use Nzxt\Controller\InstallController;
 use Nzxt\Controller\LoginController;
 use Nzxt\Controller\NodeController;
 use Nzxt\Controller\SitemapController;
@@ -126,11 +125,6 @@ class Module extends AbstractModule
                     'Uris'                => ['/logout'],
                     'ControllerClassname' => LoginController::class,
                     'ActionName'          => 'logout',
-                ],
-                'core:install' => [
-                    'Uris'                => ['/install'],
-                    'ControllerClassname' => InstallController::class,
-                    'ActionName'          => 'install',
                 ],
             ]
         );
