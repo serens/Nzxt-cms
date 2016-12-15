@@ -1,0 +1,120 @@
+<?= $this->renderPartial($this->templateDir . '/Partials/DialogHeader.phtml', ['title' => 'Sitemap']) ?>
+
+<div class="sitemap-breadcrumb">
+    <?php if ($this->startNode): ?>
+        <ul>
+            <?php foreach (array_reverse($this->startNode->getParents()) as $key => $parent): ?>
+                <li>
+                    <?php if ($key > 0): ?>
+                        <i class="fa fa-angle-right"></i>
+                    <?php endif; ?>
+                    <a href="<?= $this->linkBuilder->build('sitemap', ['#node' => $parent->getID()]) ?>"><?= $parent->getTitle() ?></a>
+                </li>
+            <?php endforeach; ?>
+            <li>
+                <i class="fa fa-angle-right"></i>
+                <?= $this->startNode->getTitle() ?>
+            </li>
+        </ul>
+    <?php endif; ?>
+</div>
+
+<div class="sitemap-tree">
+</div>
+
+<script>
+    $(function() {
+        var $container = $('.sitemap-tree');
+
+        var Sitemap = {
+            dropHandler: function(e, ui) {
+                var $source  = ui.draggable.find('span');
+                var $target  = $(this);
+                var moveData = {
+                    source: $source.data('node'),
+                    target: $target.data('node')
+                };
+
+                parent.Nzxt.showLoading(true);
+
+                $.ajax('<?= $this->linkBuilder->build('sitemap:ajax:move') ?>', {
+                    method: 'post',
+                    data: moveData,
+                    dataType: 'json',
+                    success: function(data, textStatus, jqXHR) {
+                        parent.Nzxt.showLoading(false);
+
+                        // Update the tree by reloading the target and removing the source from the DOM.
+                        $target.closest('li[data-movable]').removeClass().addClass('collapsed').children('a.toggle').trigger('click');
+                        ui.draggable.remove();
+                    }
+                });
+            },
+            onBeforeLoad: function() {
+                parent.Nzxt.showLoading(true);
+            },
+            onSelect: function($selection, e) {
+                e.preventDefault();
+                parent.Nzxt.Dialog.closeAndGoto($selection.attr('href'));
+            },
+            onAfterLoad: function($c) {
+                parent.Nzxt.showLoading(false);
+
+                $('li[data-movable]', $c).draggable({
+                    revert: 'invalid',
+                    handle: 'i.fa',
+                    opacity: 0.6
+                });
+
+                $('span[data-target]', $c).droppable({
+                    tolerance: 'pointer',
+                    drop: Sitemap.dropHandler
+                });
+            },
+            renderData: function(data) {
+                var html = '';
+
+                for (var section in data.sections) {
+                    if (section) {
+                        html += '<li class="section"><span data-target data-node="' + data.pid + ':' + section + '">' + section + '</span><ul>';
+                    }
+
+                    data.sections[section].forEach(function(child) {
+                        var movable  = child.isMovable ? 'data-movable' : '';
+                        var target   = child.isDropTarget ? 'data-target' : '';
+                        var icon     = '<i class="' + child.icon + '"></i>';
+                        var caption  = '<a class="caption" title="ID #' + child.id + '" href="' + child.uri + '">' + child.title + '</a>';
+                        var item     = '<span data-node="' + child.id + '" ' + target + '>' + icon + caption + '</span>';
+
+                        html += (child.hasChildren)
+                            ? '<li ' + movable + ' class="collapsed"><a class="toggle" href="#" rel="' + child.id + '"><i class="fa"></i></a>' + item + '</li>'
+                            : '<li ' + movable + '><i class="fa"></i>' + item + '</li>';
+                    });
+
+                    if (section) {
+                        html += '</ul></li>';
+                    }
+                }
+
+                return '<ul style="display: none;">' + html + '</ul>';
+            }
+        };
+
+        $container.fileTree({
+            persist: true,
+            cookieName: 'Nzxt.fileTree.lastState',
+            root: <?= $this->startNode->getID() ?>,
+            script: '<?= $this->linkBuilder->build('sitemap:ajax:children') ?>',
+            scriptParamName: 'parent',
+            triggerSelector: 'li a.toggle',
+            expandSpeed: 500,
+            collapseSpeed: 250,
+            expandEasing: 'easeOutExpo',
+            collapseEasing: 'easeOutExpo',
+            onDataLoaded: Sitemap.renderData,
+            onSelect: Sitemap.onSelect,
+            onBeforeLoad: Sitemap.onBeforeLoad,
+            onAfterLoad: Sitemap.onAfterLoad
+        });
+    });
+</script>

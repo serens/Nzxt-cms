@@ -1,0 +1,453 @@
+.accent-background {
+  background-color: #0572c6;
+  color: #fff; }
+
+.accent-foreground {
+  color: #0572c6; }
+
+.accent-border {
+  border-color: #0572c6; }
+
+.accent-dark {
+  background-color: #232323;
+  color: #888; }
+
+@font-face {
+  font-family: 'DIN Pro';
+  font-style: normal;
+  font-weight: normal;
+  src: local("DIN Pro"), url("../fonts/DINPro.woff") format("woff"); }
+@font-face {
+  font-family: 'DIN Pro Light';
+  font-style: normal;
+  font-weight: normal;
+  src: local("DIN Pro Light"), url("../fonts/DINPro-Light.woff") format("woff"); }
+@font-face {
+  font-family: 'DIN Pro Medium';
+  font-style: normal;
+  font-weight: normal;
+  src: local("DIN Pro Medium"), url("../fonts/DINPro-Medium.woff") format("woff"); }
+/*
+@font-face {
+  font-family: 'DIN Pro Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: local('DIN Pro Bold'), url('../fonts/DINPro-Bold.woff') format('woff');
+}
+*/
+.typography {
+  font-family: "DIN Pro Light", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1.5; }
+  .typography h1, .typography h2, .typography h3, .typography h4, .typography h5, .typography h6 {
+    font-family: inherit;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5; }
+  .typography h1 {
+    font-size: 36px;
+    margin: 0 0 20px -2px;
+    line-height: 130%; }
+  .typography p {
+    margin: 0 0 25px 0;
+    padding: 0; }
+  .typography b {
+    font-family: 'DIN Pro Medium', sans-serif;
+    font-weight: normal; }
+  .typography ul {
+    margin: 0 0 25px 0; }
+    .typography ul li {
+      padding: 0 0 5px 0; }
+      .typography ul li:last-child {
+        padding-bottom: 0; }
+  .typography .fa-ul {
+    margin-left: 0; }
+  .typography dl {
+    padding: 0;
+    margin: 0 0 25px 0;
+    width: 100%;
+    overflow: hidden; }
+  .typography dl dt {
+    clear: both;
+    float: left;
+    width: 30%;
+    padding: 0 1em 5px 0;
+    margin: 0; }
+  .typography dl dd {
+    float: left;
+    width: 65%;
+    padding: 0 0 5px 0;
+    margin: 0; }
+
+.sitemap-breadcrumb {
+  overflow: hidden; }
+  .sitemap-breadcrumb ul {
+    overflow: hidden;
+    list-style-type: none;
+    margin: 0 0 10px 0;
+    padding: 0 0 5px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
+    .sitemap-breadcrumb ul li {
+      float: left;
+      padding: 0 10px 0 0; }
+      .sitemap-breadcrumb ul li i {
+        width: 10px; }
+      .sitemap-breadcrumb ul li a {
+        text-decoration: none; }
+        .sitemap-breadcrumb ul li a:hover {
+          text-decoration: underline; }
+
+.sitemap-tree, .node-select-input .panel, .contenttype-select-input .panel {
+  padding: 0 0 3px 0; }
+  .sitemap-tree ul, .node-select-input .panel ul, .contenttype-select-input .panel ul {
+    list-style-type: none;
+    padding: 0 0 0 20px;
+    margin: 0; }
+    .sitemap-tree ul:first-child, .node-select-input .panel ul:first-child, .contenttype-select-input .panel ul:first-child {
+      padding-left: 0; }
+    .sitemap-tree ul li, .node-select-input .panel ul li, .contenttype-select-input .panel ul li {
+      line-height: 1.5;
+      padding: 0;
+      white-space: nowrap; }
+      .sitemap-tree ul li.collapsed > .toggle > .fa:before, .node-select-input .panel ul li.collapsed > .toggle > .fa:before, .contenttype-select-input .panel ul li.collapsed > .toggle > .fa:before {
+        padding-left: 9px;
+        content: "\f0da"; }
+      .sitemap-tree ul li.expanded > .toggle > .fa:before, .node-select-input .panel ul li.expanded > .toggle > .fa:before, .contenttype-select-input .panel ul li.expanded > .toggle > .fa:before {
+        padding-left: 7px;
+        content: "\f0d7"; }
+      .sitemap-tree ul li i, .node-select-input .panel ul li i, .contenttype-select-input .panel ul li i {
+        width: 20px; }
+      .sitemap-tree ul li .ui-droppable-hover, .node-select-input .panel ul li .ui-droppable-hover, .contenttype-select-input .panel ul li .ui-droppable-hover, .sitemap-tree ul li .ui-droppable-hover a, .node-select-input .panel ul li .ui-droppable-hover a, .contenttype-select-input .panel ul li .ui-droppable-hover a {
+        background-color: #fff;
+        color: #0572c6;
+        text-decoration: none; }
+      .sitemap-tree ul li.section, .node-select-input .panel ul li.section, .contenttype-select-input .panel ul li.section {
+        padding-left: 24px; }
+        .sitemap-tree ul li.section > span, .node-select-input .panel ul li.section > span, .contenttype-select-input .panel ul li.section > span {
+          font-size: 11px;
+          padding: 2px 4px 2px 4px;
+          border: 1px solid rgba(255, 255, 255, 0.7);
+          border-radius: 4px; }
+      .sitemap-tree ul li span, .node-select-input .panel ul li span, .contenttype-select-input .panel ul li span {
+        border: 1px solid transparent;
+        border-radius: 4px;
+        padding: 0 4px; }
+        .sitemap-tree ul li span.ui-droppable-active, .node-select-input .panel ul li span.ui-droppable-active, .contenttype-select-input .panel ul li span.ui-droppable-active {
+          border: 1px solid #fff; }
+          .sitemap-tree ul li span.ui-droppable-active a, .node-select-input .panel ul li span.ui-droppable-active a, .contenttype-select-input .panel ul li span.ui-droppable-active a {
+            text-decoration: none; }
+
+input[type="checkbox"],
+input[type="radio"] {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px; }
+  input[type="checkbox"]:active + label:before,
+  input[type="radio"]:active + label:before {
+    border-color: #fff; }
+  input[type="checkbox"] + label,
+  input[type="radio"] + label {
+    position: relative;
+    padding-left: 25px;
+    vertical-align: middle;
+    line-height: normal; }
+    input[type="checkbox"] + label:before,
+    input[type="radio"] + label:before {
+      box-sizing: content-box;
+      content: '';
+      color: rgba(255, 255, 255, 0.7);
+      position: absolute;
+      top: 10px;
+      left: 0;
+      width: 10px;
+      height: 10px;
+      margin-top: -8px;
+      border: 2px solid rgba(255, 255, 255, 0.7);
+      text-align: center; }
+    input[type="checkbox"] + label:after,
+    input[type="radio"] + label:after {
+      box-sizing: content-box;
+      content: '';
+      background-color: #fff;
+      position: absolute;
+      top: 10px;
+      left: 3px;
+      width: 8px;
+      height: 8px;
+      margin-top: -5px;
+      transform: scale(0); }
+
+input[type="checkbox"] + label:after {
+  background-color: transparent;
+  top: 10px;
+  left: 2px;
+  width: 8px;
+  height: 3px;
+  border-style: solid;
+  border-color: #fff;
+  border-width: 0 0 3px 3px;
+  border-image: none;
+  transform: rotate(-45deg) scale(0); }
+input[type="checkbox"]:checked + label:after {
+  content: '';
+  transform: rotate(-45deg) scale(0.75); }
+
+input[type="radio"]:checked + label:before {
+  background-color: #0572c6; }
+input[type="radio"]:checked + label:after {
+  transform: scale(0.75); }
+input[type="radio"] + label:before, input[type="radio"] + label:after {
+  border-radius: 50%; }
+
+input[type=text], div.user-input,
+input[type=password],
+select,
+textarea {
+  letter-spacing: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  outline: none;
+  color: #232323;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 6px 6px 7px 7px;
+  border: none;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 0 25px 0; }
+  input[type=text]:focus, div.user-input:focus, input[type=text]:active, div.user-input:active,
+  input[type=password]:focus,
+  input[type=password]:active,
+  select:focus,
+  select:active,
+  textarea:focus,
+  textarea:active {
+    background-color: white; }
+
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0; }
+  select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000; }
+
+button {
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  padding: 6px 11px 7px 11px;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  outline: none;
+  letter-spacing: inherit;
+  min-width: 125px; }
+  button i.fa {
+    padding-left: 5px; }
+  button:hover, button:focus {
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    padding: 5px 10px 6px 10px; }
+  button:active, button.active {
+    background-color: #fff;
+    color: #0572c6; }
+
+textarea {
+  height: 150px; }
+
+/* IE 10/11+ - This hides native dropdown button arrow so it will have the custom appearance, IE 9 and earlier get a native select - targeting media query hack via http://browserhacks.com/#hack-28f493d247a12ab654f6c3637f6978d5 - looking for better ways to achieve this targeting */
+/* The second rule removes the odd blue bg color behind the text in the select button in IE 10/11 and sets the text color to match the focus style's - fix via http://stackoverflow.com/questions/17553300/change-ie-background-color-on-unopened-focused-select-box */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  select::-ms-expand {
+    display: none; }
+
+  select:focus::-ms-value {
+    background: transparent;
+    color: grey; } }
+#cms-tooltip {
+  position: absolute;
+  z-index: 5500;
+  background-color: #232323;
+  padding: 2px 8px 3px 8px; }
+  #cms-tooltip h3 {
+    font-family: "DIN Pro Light", sans-serif;
+    font-size: 14px;
+    font-weight: 100;
+    font-style: normal;
+    line-height: 1.5;
+    padding: 0;
+    margin: 0;
+    color: #888;
+    white-space: pre; }
+
+div.user-input a {
+  color: #232323;
+  text-decoration: none; }
+  div.user-input a:hover {
+    color: #0572c6;
+    text-decoration: underline; }
+
+.node-select-input, .contenttype-select-input {
+  position: relative; }
+  .node-select-input .value, .contenttype-select-input .value {
+    line-height: normal; }
+  .node-select-input.panel-opened, .panel-opened.contenttype-select-input {
+    background-color: white; }
+    .node-select-input.panel-opened .value, .panel-opened.contenttype-select-input .value {
+      display: none; }
+  .node-select-input .panel, .contenttype-select-input .panel {
+    display: none;
+    height: 251px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 0 0 0 2px; }
+    .node-select-input .panel li, .contenttype-select-input .panel li {
+      color: #ccc; }
+    .node-select-input .panel i.fa.enabled, .contenttype-select-input .panel i.fa.enabled {
+      color: #232323; }
+    .node-select-input .panel i.fa.disabled, .contenttype-select-input .panel i.fa.disabled {
+      color: #ccc; }
+  .node-select-input .panel-trigger, .contenttype-select-input .panel-trigger {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 4px 8px 3px 8px; }
+
+.file-upload-input {
+  position: relative; }
+  .file-upload-input .value {
+    line-height: normal; }
+  .file-upload-input input {
+    display: none; }
+  .file-upload-input .select-file {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 4px 8px 3px 8px; }
+
+.contenttype-select-input .panel li {
+  color: #232323; }
+
+body {
+  padding: 150px 30px 30px 30px;
+  margin: 0;
+  color: #fff; }
+
+/*
+::-webkit-scrollbar { width: 2px; height: 2px; }
+::-webkit-scrollbar-button { background-color: $cms-accent-foreground-color; }
+::-webkit-scrollbar-track { background-color: $cms-accent-color; }
+::-webkit-scrollbar-thumb { background-color: $cms-accent-foreground-color-light; }
+::-webkit-scrollbar-corner { background-color: $cms-accent-color; }
+*/
+a {
+  color: rgba(255, 255, 255, 0.7); }
+  a:hover {
+    color: #fff; }
+
+dl dd {
+  color: rgba(255, 255, 255, 0.7); }
+
+form {
+  margin: 0;
+  padding: 0; }
+  form fieldset {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    margin: 0 0 25px 0;
+    padding: 0; }
+    form fieldset legend {
+      margin: 0 0 25px 0;
+      padding: 0 10px 0 0;
+      font-size: 20px; }
+    form fieldset > :last-child {
+      margin-bottom: 0; }
+  form label {
+    display: block;
+    margin: 0 0 5px 0; }
+
+.help-item {
+  display: none;
+  font-style: normal;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7); }
+
+.dialog-header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  background-color: #0572c6;
+  padding: 30px 30px 0 30px;
+  z-index: 100;
+  height: 100px; }
+  .dialog-header h1 {
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    -ms-transition: all 0.25s ease-out;
+    -o-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+    clear: both;
+    padding-top: 12.5px;
+    margin-bottom: 0; }
+  .dialog-header.small {
+    height: 50px;
+    /*border-bottom: 1px solid $cms-accent-foreground-color-very-light;*/
+    box-shadow: 0px 15px 25px -15px rgba(0, 0, 0, 0.5); }
+    .dialog-header.small h1 {
+      -webkit-transition: all 0.25s ease-out;
+      -moz-transition: all 0.25s ease-out;
+      -ms-transition: all 0.25s ease-out;
+      -o-transition: all 0.25s ease-out;
+      transition: all 0.25s ease-out;
+      padding-top: 0;
+      clear: none;
+      font-size: 25px; }
+  .dialog-header .controls {
+    float: right;
+    overflow: hidden;
+    text-align: right; }
+    .dialog-header .controls a {
+      outline: none;
+      font-size: 13px;
+      width: 21px;
+      height: 21px;
+      text-align: center;
+      display: inline-block;
+      text-decoration: none;
+      margin: 0 0 0 5px;
+      padding: 1px;
+      color: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: 50%;
+      line-height: 1.55; }
+      .dialog-header .controls a:hover, .dialog-header .controls a:focus {
+        border: 2px solid rgba(255, 255, 255, 0.7);
+        padding: 0px; }
+      .dialog-header .controls a:active, .dialog-header .controls a.active {
+        background-color: #fff;
+        color: #0572c6; }
+      .dialog-header .controls a.toggle-help i {
+        text-indent: -2px; }
+
+.dialog-button-row {
+  clear: both;
+  overflow: hidden;
+  text-align: left; }
+  .dialog-button-row button {
+    display: inline-block;
+    margin: 0 15px 0 0; }
+
+.sortable-container > div {
+  cursor: ns-resize;
+  padding: 0 0 5px 0; }
+  .sortable-container > div:last-child {
+    padding-bottom: 0; }

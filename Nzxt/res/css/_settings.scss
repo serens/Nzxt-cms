@@ -1,0 +1,23 @@
+$accent-lime: #8cbf26;
+$accent-blue: #1ba1e2;
+$accent-teal: #00aba9;
+$accent-green: #339933;
+$accent-orange: #ffcc37;
+$accent-darkblue: #0572c6;
+
+$cms-accent-color: $accent-darkblue;
+$cms-accent-foreground-color: #fff;
+
+@if $cms-accent-color == $accent-orange {
+  $cms-accent-foreground-color: #232323;
+}
+
+$cms-accent-foreground-color-light: rgba($cms-accent-foreground-color, 0.7);
+$cms-accent-foreground-color-very-light: rgba($cms-accent-foreground-color, 0.3);
+$cms-dark-color: #232323;
+$cms-dark-foreground-color: #888;
+
+$cms-typography-font-family: 'DIN Pro Light', sans-serif;
+$cms-typography-font-size: 14px;
+$cms-typography-line-height: 1.5;
+$cms-typography-element-space: 25px;

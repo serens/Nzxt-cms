@@ -1,0 +1,301 @@
+.accent-background {
+  background-color: #0572c6;
+  color: #fff; }
+
+.accent-foreground {
+  color: #0572c6; }
+
+.accent-border {
+  border-color: #0572c6; }
+
+.accent-dark {
+  background-color: #232323;
+  color: #888; }
+
+@font-face {
+  font-family: 'DIN Pro';
+  font-style: normal;
+  font-weight: normal;
+  src: local("DIN Pro"), url("../fonts/DINPro.woff") format("woff"); }
+@font-face {
+  font-family: 'DIN Pro Light';
+  font-style: normal;
+  font-weight: normal;
+  src: local("DIN Pro Light"), url("../fonts/DINPro-Light.woff") format("woff"); }
+@font-face {
+  font-family: 'DIN Pro Medium';
+  font-style: normal;
+  font-weight: normal;
+  src: local("DIN Pro Medium"), url("../fonts/DINPro-Medium.woff") format("woff"); }
+/*
+@font-face {
+  font-family: 'DIN Pro Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: local('DIN Pro Bold'), url('../fonts/DINPro-Bold.woff') format('woff');
+}
+*/
+.typography {
+  font-family: "DIN Pro Light", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1.5; }
+  .typography h1, .typography h2, .typography h3, .typography h4, .typography h5, .typography h6 {
+    font-family: inherit;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5; }
+  .typography h1 {
+    font-size: 36px;
+    margin: 0 0 20px -2px;
+    line-height: 130%; }
+  .typography p {
+    margin: 0 0 25px 0;
+    padding: 0; }
+  .typography b {
+    font-family: 'DIN Pro Medium', sans-serif;
+    font-weight: normal; }
+  .typography ul {
+    margin: 0 0 25px 0; }
+    .typography ul li {
+      padding: 0 0 5px 0; }
+      .typography ul li:last-child {
+        padding-bottom: 0; }
+  .typography .fa-ul {
+    margin-left: 0; }
+  .typography dl {
+    padding: 0;
+    margin: 0 0 25px 0;
+    width: 100%;
+    overflow: hidden; }
+  .typography dl dt {
+    clear: both;
+    float: left;
+    width: 30%;
+    padding: 0 1em 5px 0;
+    margin: 0; }
+  .typography dl dd {
+    float: left;
+    width: 65%;
+    padding: 0 0 5px 0;
+    margin: 0; }
+
+#cms-tooltip {
+  position: absolute;
+  z-index: 5500;
+  background-color: #232323;
+  padding: 2px 8px 3px 8px; }
+  #cms-tooltip h3 {
+    font-family: "DIN Pro Light", sans-serif;
+    font-size: 14px;
+    font-weight: 100;
+    font-style: normal;
+    line-height: 1.5;
+    padding: 0;
+    margin: 0;
+    color: #888;
+    white-space: pre; }
+
+.editable {
+  position: relative; }
+  .editable .border {
+    -webkit-transition: all 0.125s ease;
+    -moz-transition: all 0.125s ease;
+    -ms-transition: all 0.125s ease;
+    -o-transition: all 0.125s ease;
+    transition: all 0.125s ease;
+    position: absolute;
+    background-color: #232323; }
+    .editable .border.left {
+      left: 0;
+      top: 0;
+      width: 2px;
+      height: 100%; }
+    .editable .border.top {
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 2px; }
+    .editable .border.right {
+      right: 0;
+      top: 0;
+      width: 2px;
+      height: 100%; }
+    .editable .border.bottom {
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px; }
+  .editable:hover > .border {
+    -webkit-transition: all 0.25s ease;
+    -moz-transition: all 0.25s ease;
+    -ms-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    background-color: #0572c6; }
+  .editable:hover > .menue > .header {
+    -webkit-transition: all 0.25s ease;
+    -moz-transition: all 0.25s ease;
+    -ms-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    background-color: #0572c6; }
+    .editable:hover > .menue > .header a {
+      color: rgba(255, 255, 255, 0.7); }
+      .editable:hover > .menue > .header a:hover {
+        color: #fff; }
+  .editable .menue {
+    background-color: #232323;
+    color: #888;
+    overflow: hidden;
+    font-family: "DIN Pro Light", sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none; }
+    .editable .menue .menue-row {
+      clear: both;
+      padding: 4px 6px;
+      margin: 0;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(136, 136, 136, 0.4);
+      line-height: 1.5; }
+    .editable .menue .admin-bar a.logo {
+      float: left;
+      margin: 2px 0;
+      display: inline-block;
+      text-indent: -9999px;
+      background: url(../img/logo_white.png) center center no-repeat;
+      background-size: cover;
+      width: 118px;
+      height: 20px;
+      opacity: 0.6; }
+      .editable .menue .admin-bar a.logo:hover {
+        opacity: 1; }
+    .editable .menue .admin-bar a.user {
+      float: right;
+      display: inline-block;
+      margin: 3px 0 0 0; }
+    .editable .menue .breadcrumb ul {
+      overflow: hidden;
+      list-style-type: none;
+      margin: 0;
+      padding: 0; }
+      .editable .menue .breadcrumb ul li {
+        float: left;
+        padding: 0 5px 0 0; }
+        .editable .menue .breadcrumb ul li i {
+          width: 10px; }
+    .editable .menue .header {
+      -webkit-transition: all 0.125s ease;
+      -moz-transition: all 0.125s ease;
+      -ms-transition: all 0.125s ease;
+      -o-transition: all 0.125s ease;
+      transition: all 0.125s ease;
+      border-bottom: none; }
+      .editable .menue .header .caption {
+        float: left; }
+      .editable .menue .header .actions {
+        float: right; }
+  .editable .content {
+    padding: 0 2px 2px 2px;
+    clear: both; }
+  .editable a.cms {
+    display: inline-block;
+    color: #888;
+    text-decoration: none; }
+    .editable a.cms:hover {
+      color: white; }
+
+#cms-mask {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.9;
+  z-index: 9999; }
+
+#cms-dialog {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  overflow: hidden; }
+  #cms-dialog iframe {
+    height: 100%;
+    overflow: hidden;
+    border: 0; }
+  #cms-dialog.left {
+    left: 0; }
+  #cms-dialog.right {
+    right: 0; }
+
+#cms-loading {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  z-index: 10001;
+  background-color: #232323; }
+  #cms-loading.loading {
+    display: block; }
+  #cms-loading .spinner {
+    margin: 21px 0 0 23px;
+    height: 15px;
+    width: 15px;
+    animation: rotate-spinner 0.5s infinite linear;
+    border: 2px solid #888;
+    border-right-color: transparent;
+    border-radius: 50%; }
+@keyframes rotate-spinner {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+/*
+ * The following selector handles content which is being edited without having a template.
+ */
+body.no-template {
+  padding: 20px; }
+  body.no-template .editable {
+    margin-bottom: 8px; }
+    body.no-template .editable .border {
+      background-color: #888; }
+    body.no-template .editable .menue {
+      background-color: #888;
+      color: #232323; }
+      body.no-template .editable .menue .admin-bar {
+        border-bottom-color: rgba(35, 35, 35, 0.4); }
+        body.no-template .editable .menue .admin-bar a.logo {
+          background-image: url(../img/logo_black.png); }
+      body.no-template .editable .menue .breadcrumb {
+        border-bottom-color: rgba(35, 35, 35, 0.4); }
+    body.no-template .editable .content {
+      padding: 20px 10px 2px 30px; }
+    body.no-template .editable a.cms {
+      color: rgba(35, 35, 35, 0.6); }
+      body.no-template .editable a.cms:hover {
+        color: #232323; }
+    body.no-template .editable:hover > .border {
+      -webkit-transition: all 0.25s ease;
+      -moz-transition: all 0.25s ease;
+      -ms-transition: all 0.25s ease;
+      -o-transition: all 0.25s ease;
+      transition: all 0.25s ease;
+      background-color: #0572c6; }
+  body.no-template #cms-tooltip {
+    background-color: #0572c6; }
+    body.no-template #cms-tooltip h3 {
+      color: #fff; }

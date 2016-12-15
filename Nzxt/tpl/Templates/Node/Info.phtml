@@ -1,0 +1,179 @@
+<?= $this->renderPartial($this->templateDir . '/Partials/DialogHeader.phtml', ['title' => 'Information']) ?>
+
+<form action="<?= $this->linkBuilder->build('node:edit', ['#node' => $this->node->getID()]) ?>" method="get">
+    <fieldset>
+        <legend>General</legend>
+
+        <dl>
+            <dt>ID</dt>
+            <dd><?= $this->node->getID() ?></dd>
+            <dt>Title</dt>
+            <dd><?= $this->node->getTitle() ?></dd>
+            <dt>Reference</dt>
+            <dd>
+                <?php if ($reference = $this->node->getReferenceNode()): ?>
+                    <i class="<?= $reference->getIcon() ?> fa-fw"></i>
+                    <a href="<?= $this->linkBuilder->build('node:info', ['#node' => $reference->getID()]) ?>"><?= $reference->getTitle() ?></a>
+                <?php else: ?>
+                    &ndash;
+                <?php endif; ?>
+            </dd>
+            <dt>Section</dt>
+            <dd><?= $this->node->getFieldValue('section') ?></dd>
+            <dt>Parent</dt>
+
+            <?php if ($parent = $this->node->getParent()): ?>
+                <dd>
+                    <i class="<?= $parent->getIcon() ?> fa-fw"></i>
+                    <a href="<?= $this->linkBuilder->build('node:info', ['#node' => $parent->getID()]) ?>"><?= $parent->getTitle() ?></a>
+                </dd>
+            <?php else: ?>
+                <dd>
+                    This node has no parent node.
+                </dd>
+            <?php endif; ?>
+
+            <dt>Hidden</dt>
+            <dd><?= (bool) $this->node->getFieldValue('hidden') ? 'yes' : 'no' ?></dd>
+            <dt>Created</dt>
+            <dd>
+                <?php if ($this->node->getFieldValue('created')): ?>
+                    <?= $this->node->getFieldValue('created') ?>
+
+                    <?php if ($this->creator): ?>
+                        by <?= $this->creator->getTitle() ?>
+                    <?php endif; ?>
+                <?php else: ?>
+                    Unknown
+                <?php endif; ?>
+            </dd>
+            <dt>Modified</dt>
+            <dd>
+                <?php if ($this->node->getFieldValue('modified')): ?>
+                    <?= $this->node->getFieldValue('modified') ?>
+
+                    <?php if ($this->modifier): ?>
+                        by <?= $this->modifier->getTitle() ?>
+                    <?php endif; ?>
+                <?php else: ?>
+                    Unknown
+                <?php endif; ?>
+            </dd>
+        </dl>
+    </fieldset>
+
+    <fieldset>
+        <legend>Children</legend>
+
+        <?php if ($children = $this->node->getChildren()): ?>
+            <ul class="fa-ul">
+            <?php foreach ($children as $child): ?>
+                <li>
+                    <i class="<?= $child->getIcon() ?> fa-fw"></i>
+                    <a href="<?= $this->linkBuilder->build('node:info', ['#node' => $child->getID()]) ?>"><?= $child->getTitle() ?></a>
+                </li>
+            <?php endforeach; ?>
+            </ul>
+        <?php else: ?>
+            <p>
+                This node has no children.
+            </p>
+        <?php endif; ?>
+    </fieldset>
+
+    <fieldset>
+        <legend>References to this node</legend>
+
+        <?php if (count($this->references)): ?>
+            <ul class="fa-ul">
+            <?php foreach ($this->references as $reference): ?>
+                <li>
+                    <i class="<?= $reference->getIcon() ?> fa-fw"></i>
+                    <a href="<?= $this->linkBuilder->build('node:info', ['#node' => $reference->getID()]) ?>"><?= $reference->getTitle() ?></a>
+                </li>
+            <?php endforeach; ?>
+            </ul>
+        <?php else: ?>
+            <p>
+                No nodes are referencing this node.
+            </p>
+        <?php endif; ?>
+    </fieldset>
+
+    <fieldset>
+        <legend>Content type</legend>
+
+        <?php if ($content = $this->node->getContent()): ?>
+            <dl>
+                <dt>Name</dt>
+                <dd><?= $content->getTitle() ?></dd>
+                <dt>Description</dt>
+                <dd><?= $content->getDescription() ?></dd>
+                <dt>Class</dt>
+                <dd><?= $this->node->getFieldValue('content_classname') ?></dd>
+                <dt>Sections</dt>
+                <dd>
+                    <?php if ($section = $content->getAvailableSectionNames()): ?>
+                        <?= implode(', ', $section) ?>
+                    <?php else: ?>
+                        None
+                    <?php endif; ?>
+                </dd>
+            </dl>
+        <?php else: ?>
+            <p>
+                This node has no content type assigned.
+            </p>
+        <?php endif; ?>
+    </fieldset>
+
+    <?php if ($content = $this->node->getContent()): ?>
+        <fieldset>
+            <legend>Properties</legend>
+
+            <?php if (count($fieldDescription = $content->getFieldDescription())): ?>
+                <dl>
+                <?php foreach (array_keys($fieldDescription) as $propertyName): ?>
+                    <dt>
+                        <?= $fieldDescription[$propertyName]['label'] ?>
+                    </dt>
+                    <dd>
+                        <?php if (strlen($propertyValue = htmlspecialchars($content->getFieldValue($propertyName))) > 200): ?>
+                            <?= substr($propertyValue, 0, 200) . ' (&hellip;)' ?>
+                        <?php else: ?>
+                            <?= $propertyValue ?>
+                        <?php endif; ?>
+                    </dd>
+                <?php endforeach; ?>
+                </dl>
+            <?php else: ?>
+                <p>
+                    <i class="fa fa-info-circle fa-fw"></i> The selected content type does not provide any properties.
+                </p>
+            <?php endif; ?>
+        </fieldset>
+    <?php endif; ?>
+
+    <?php if ($content && ($information = $content->getInformation())): ?>
+        <fieldset>
+            <legend>Information</legend>
+
+            <dl>
+            <?php foreach ($information as $infoName => $infoValue): ?>
+                <dt><?= $infoName ?></dt>
+                <dd><?= $infoValue ?></dd>
+            <?php endforeach; ?>
+            </dl>
+        </fieldset>
+    <?php endif; ?>
+
+    <div class="dialog-button-row">
+        <button type="submit">
+            Edit this node <i class="fa fa-angle-right"></i>
+        </button>
+
+        <button type="button" data-dialog-button-type="cancel">
+            Close
+        </button>
+    </div>
+</form>

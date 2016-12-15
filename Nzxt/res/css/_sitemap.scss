@@ -1,0 +1,94 @@
+$indent-width: 20px;
+$droppable-padding: 4px;
+$border-radius: 4px;
+
+.sitemap-breadcrumb {
+  overflow: hidden;
+  ul {
+    overflow: hidden;
+    list-style-type: none;
+    margin: 0 0 10px 0;
+    padding: 0 0 5px 0;
+    border-bottom: 1px solid $cms-accent-foreground-color-very-light;
+    li {
+      float: left;
+      padding: 0 10px 0 0;
+      i {
+        width: 10px;
+      }
+      a {
+        text-decoration: none;
+        &:hover {
+         text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+.sitemap-tree {
+  padding: 0 0 3px 0;
+
+  ul {
+    list-style-type: none;
+    padding: 0 0 0 $indent-width;
+    margin: 0;
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    li {
+      line-height: $cms-typography-line-height;
+      padding: 0;
+      white-space: nowrap;
+
+      &.collapsed > .toggle > .fa:before {
+        padding-left: $droppable-padding + 5px;
+        content: "\f0da";
+      }
+
+      &.expanded > .toggle > .fa:before {
+        padding-left: $droppable-padding + 3px;
+        content: "\f0d7";
+      }
+
+      i {
+        width: $indent-width;
+      }
+
+      .caption {
+      }
+
+      .ui-droppable-hover, .ui-droppable-hover a {
+        background-color: $cms-accent-foreground-color;
+        color: $cms-accent-color;
+        text-decoration: none;
+      }
+
+      &.section {
+        padding-left: $indent-width + $droppable-padding;
+
+        & > span {
+          font-size: 11px;
+          padding: 2px 4px 2px 4px;
+          border: 1px solid $cms-accent-foreground-color-light;
+          border-radius: $border-radius;
+        }
+      }
+
+      span {
+        border: 1px solid transparent;
+        border-radius: $border-radius;
+        padding: 0 $droppable-padding;
+
+        &.ui-droppable-active {
+          border: 1px solid $cms-accent-foreground-color;
+          a {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,123 @@
+<?= $this->renderPartial($this->templateDir . '/Partials/DialogHeader.phtml', ['title' => 'Edit node']) ?>
+
+<form action="<?= $this->form->getAttribute('action') ?>" method="<?= $this->form->getAttribute('method') ?>" enctype="multipart/form-data">
+    <fieldset>
+        <legend>Settings</legend>
+
+        <div>
+            <label for="title">
+                Title
+                <div class="help-item">The title is mandatory and must be entered.</div>
+            </label>
+            <?= $this->form->getElement('title')->setAttribute('id', 'title')->render() ?>
+        </div>
+
+        <div>
+            <label for="reference">
+                Reference
+                <div class="help-item">If specified, the content of the selected node will be used.</div>
+            </label>
+            <?= $this->form->getElement('reference')->setAttribute('id', 'reference')->render() ?>
+        </div>
+
+        <div>
+            <label for="section">
+                Section
+                <div class="help-item">Defines at which position the node will be displayed on its parent node.</div>
+            </label>
+            <?= $this->form->getElement('section')->setAttribute('id', 'section')->render() ?>
+        </div>
+
+        <div>
+            <label for="pid">
+                Parent
+                <div class="help-item">The parent of the node.</div>
+            </label>
+            <?= $this->form->getElement('pid')->setAttribute('id', 'pid')->render() ?>
+        </div>
+
+        <div id="content-selection">
+            <label>
+                Content type
+                <div class="help-item">Specifies which properties a node will have and how the node will be rendered.</div>
+            </label>
+            <?= $this->form->getElement('content_classname')->setAttribute('id', 'content_classname')->render() ?>
+        </div>
+
+        <div>
+            <?= $this->form->getElement('hidden')->setAttribute('id', 'hidden')->render() ?>
+            <label for="hidden">Hidden</label>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Content</legend>
+
+        <?php if ($content = $this->node->getContent()): ?>
+            <div id="content-properties">
+                <?php if ($content->getDescription()): ?>
+                    <p class="help-item">
+                        Content type "<?= $content->getTitle() ?>": <?= $content->getDescription() ?>
+                    </p>
+                <?php endif; ?>
+
+                <?php $fieldDescription = $content->getFieldDescription(); ?>
+                <?php if (count($elements = $content->getScaffoldedFormElements())): ?>
+                    <?php foreach ($elements as $elementName => $element): ?>
+                        <div>
+                            <label for="<?= $elementName ?>">
+                                <?= $fieldDescription[$elementName]['label'] ?>
+
+                                <?php if (!empty($fieldDescription[$elementName]['description'])): ?>
+                                    <div class="help-item"><?= htmlspecialchars($fieldDescription[$elementName]['description']) ?></div>
+                                <?php endif; ?>
+                            </label>
+                            <?= $this->form->getElement($elementName)->setAttribute('id', $elementName)->render() ?>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>
+                        <i class="fa fa-info-circle fa-fw"></i> The selected content type does not provide any properties.
+                    </p>
+                <?php endif; ?>
+            </div>
+
+            <div id="content-properties-information">
+                <p>
+                    <i class="fa fa-warning fa-fw"></i> A changed content type requires the node to be saved first.
+                </p>
+
+                <p>
+                    After the node has been saved you can edit the node again and change the properties of the new selected content type.
+                </p>
+            </div>
+        <?php else: ?>
+            <p>
+                This node has no content type assigned.
+            </p>
+        <?php endif; ?>
+    </fieldset>
+
+    <div class="dialog-button-row">
+        <button type="button" data-dialog-button-type="submit">
+            Save
+        </button>
+
+        <button type="button" data-dialog-button-type="cancel">
+            Cancel
+        </button>
+    </div>
+</form>
+
+<script>
+    var originalContentType = "<?= addslashes($this->node->getFieldValue('content_classname')) ?>";
+    var $contentSelectionPanel = $('#content-selection');
+    var $contentPropertiesPanel = $('#content-properties');
+    var $contentPropertiesInformation = $('#content-properties-information').hide();
+
+    $('input[type=hidden]', $contentSelectionPanel).bind('update', function() {
+        ($(this).val() != originalContentType)
+            ? $contentPropertiesPanel.hide() && $contentPropertiesInformation.show()
+            : $contentPropertiesPanel.show() && $contentPropertiesInformation.hide();
+    });
+</script>

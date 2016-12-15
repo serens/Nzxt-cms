@@ -1,0 +1,193 @@
+$inputHeight: 10px;
+$inputWidth: 10px;
+$inputBorderWidth: 2px;
+$inputActiveScale: 2px;
+
+input[type="checkbox"],
+input[type="radio"] {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+
+  &:focus,
+  &:hover {
+    + label {
+      &:before {
+      }
+    }
+  }
+
+  &:active {
+    + label {
+      &:before {
+        border-color: $cms-accent-foreground-color;
+      }
+    }
+  }
+
+  + label {
+    position: relative;
+    padding-left: $inputWidth*2.5;
+    vertical-align: middle;
+    line-height: normal;
+
+    &:before {
+      box-sizing: content-box;
+      content: '';
+      color: $cms-accent-foreground-color-light;
+      position: absolute;
+      top: 10px;
+      left: 0;
+      width: $inputWidth;
+      height: $inputHeight;
+      margin-top: -($inputHeight/2 + $inputBorderWidth)-1;
+      border: $inputBorderWidth solid $cms-accent-foreground-color-light;
+      text-align: center;
+    }
+    &:after {
+      box-sizing: content-box;
+      content: '';
+      background-color: $cms-accent-foreground-color;
+      position: absolute;
+      top: 10px;
+      left: $inputBorderWidth + $inputActiveScale/2;
+      width: $inputWidth - $inputActiveScale;
+      height: $inputHeight -$inputActiveScale;
+      margin-top: -(($inputHeight - $inputActiveScale)/2)-1;
+      transform: scale(0);
+    }
+  }
+}
+
+input[type="checkbox"] {
+  + label {
+    &:after {
+      background-color: transparent;
+      top: 10px;
+      left: 2px;
+      width: 8px;
+      height: 3px;
+      border-style: solid;
+      border-color: $cms-accent-foreground-color;
+      border-width: 0 0 3px 3px;
+      border-image: none;
+      transform: rotate(-45deg) scale(0);
+    }
+  }
+  &:checked {
+    + label {
+      &:after {
+        content: '';
+        transform: rotate(-45deg) scale(0.75);
+      }
+    }
+  }
+}
+
+input[type="radio"] {
+  &:checked {
+    + label {
+      &:before {
+        background-color: $cms-accent-color;
+      }
+      &:after {
+        transform: scale(0.75);
+      }
+    }
+  }
+  + label {
+    &:before,
+    &:after {
+      border-radius: 50%;
+    }
+  }
+}
+
+input[type=text],
+input[type=password],
+select,
+textarea {
+  letter-spacing: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  outline: none;
+  color: $cms-dark-color;
+
+  @if $cms-accent-color == $accent-orange {
+    background-color: rgba(#fff, 0.7);
+  } @else {
+    background-color: $cms-accent-foreground-color-light;
+  }
+
+  padding: 6px 6px 7px 7px;
+  border: none;
+
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 0 $cms-typography-element-space 0;
+
+  &:focus,
+  &:active {
+    background-color: white;
+  }
+}
+
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+
+  // Fix Firefox dotted focusring
+  &:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+  }
+}
+
+button {
+  border: 1px solid $cms-accent-foreground-color-light;
+  padding: 6px 11px 7px 11px;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  outline: none;
+  letter-spacing: inherit;
+  min-width: 125px;
+
+  i.fa {
+    padding-left: 5px;
+  }
+
+  &:hover, &:focus {
+    border: $inputBorderWidth solid $cms-accent-foreground-color-light;
+    padding: 5px 10px 6px 10px;
+  }
+  &:active, &.active {
+    background-color: $cms-accent-foreground-color;
+    color: $cms-accent-color;
+  }
+}
+
+textarea {
+  height: 150px;
+}
+
+/* IE 10/11+ - This hides native dropdown button arrow so it will have the custom appearance, IE 9 and earlier get a native select - targeting media query hack via http://browserhacks.com/#hack-28f493d247a12ab654f6c3637f6978d5 - looking for better ways to achieve this targeting */
+/* The second rule removes the odd blue bg color behind the text in the select button in IE 10/11 and sets the text color to match the focus style's - fix via http://stackoverflow.com/questions/17553300/change-ie-background-color-on-unopened-focused-select-box */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  select::-ms-expand {
+    display: none;
+  }
+  select:focus::-ms-value {
+    background: transparent;
+    color: grey;
+  }
+}

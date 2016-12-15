@@ -1,0 +1,92 @@
+$disabled-color: #ccc;
+
+div.user-input {
+  @extend input[type=text];
+
+  a {
+    color: $cms-dark-color;
+    text-decoration: none;
+
+    &:hover {
+      color: $cms-accent-color;
+      text-decoration: underline;
+    }
+  }
+}
+
+// User input styles for Nzxt\Form\Element\Node
+.node-select-input {
+  position: relative;
+
+  .value {
+    line-height: normal;
+  }
+
+  &.panel-opened {
+    background-color: white;
+
+    .value {
+      display: none;
+    }
+  }
+
+  & .panel {
+    @extend .sitemap-tree;
+
+    display: none;
+    height: 251px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 0 0 0 2px;
+
+    li {
+      color: $disabled-color;
+    }
+
+    i.fa.enabled {
+      color: $cms-dark-color;
+    }
+
+    i.fa.disabled {
+      color: $disabled-color;
+    }
+  }
+
+  & .panel-trigger {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 4px 8px 3px 8px;
+  }
+}
+
+// User input styles for Nzxt\Form\Element\FileUpload
+.file-upload-input {
+  position: relative;
+
+  .value {
+    line-height: normal;
+  }
+
+  input {
+    display: none;
+  }
+
+  & .select-file {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 4px 8px 3px 8px;
+  }
+}
+
+// User input styles for Nzxt\Form\Element\ContentType
+.contenttype-select-input {
+  @extend .node-select-input;
+
+  & .panel {
+    li {
+      color: $cms-dark-color;
+    }
+  }
+}

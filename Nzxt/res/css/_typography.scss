@@ -1,0 +1,100 @@
+@font-face {
+  font-family: 'DIN Pro';
+  font-style: normal;
+  font-weight: normal;
+  src: local('DIN Pro'), url('../fonts/DINPro.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'DIN Pro Light';
+  font-style: normal;
+  font-weight: normal;
+  src: local('DIN Pro Light'), url('../fonts/DINPro-Light.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'DIN Pro Medium';
+  font-style: normal;
+  font-weight: normal;
+  src: local('DIN Pro Medium'), url('../fonts/DINPro-Medium.woff') format('woff');
+}
+
+/*
+@font-face {
+  font-family: 'DIN Pro Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: local('DIN Pro Bold'), url('../fonts/DINPro-Bold.woff') format('woff');
+}
+*/
+
+.typography {
+  font-family: $cms-typography-font-family;
+  font-size: $cms-typography-font-size;
+  font-weight: normal;
+  font-style: normal;
+  line-height: $cms-typography-line-height;
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: inherit;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    line-height: $cms-typography-line-height;
+  }
+
+  h1 {
+    font-size: 36px;
+    margin: 0 0 20px -2px;
+    line-height: 130%;
+  }
+
+  p {
+    margin: 0 0 $cms-typography-element-space 0;
+    padding: 0;
+  }
+
+  b {
+    font-family: 'DIN Pro Medium', sans-serif;
+    font-weight: normal;
+  }
+
+  ul {
+    margin: 0 0 $cms-typography-element-space 0;
+
+    li {
+      padding: 0 0 5px 0;
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  .fa-ul {
+    margin-left: 0;
+  }
+
+  dl {
+    padding: 0;
+    margin: 0 0 $cms-typography-element-space 0;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  dl {
+    dt {
+      clear: both;
+      float: left;
+      width: 30%;
+      padding: 0 1em 5px 0;
+      margin: 0;
+    }
+    dd {
+      float: left;
+      width: 65%;
+      padding: 0 0 5px 0;
+      margin: 0;
+    }
+  }
+}

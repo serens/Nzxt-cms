@@ -1,0 +1,53 @@
+<?= $this->renderPartial($this->templateDir . '/Partials/DialogHeader.phtml', ['title' => 'Change sorting order']) ?>
+
+<p>
+    Change the sorting order by dragging the nodes in their preferred position.
+</p>
+
+<form action="<?= $this->form->getAttribute('action') ?>" method="<?= $this->form->getAttribute('method') ?>">
+    <?= $this->form->getElement('sorting')->render() ?>
+
+    <fieldset>
+        <legend>
+            <?php if ($this->siblings->getElement(0)->getFieldValue('section')): ?>
+                Nodes found in section "<?= $this->siblings->getElement(0)->getFieldValue('section') ?>"
+            <?php else: ?>
+                Nodes found
+            <?php endif; ?>
+        </legend>
+
+        <div class="sortable-container">
+            <?php foreach ($this->siblings as $sibling): ?>
+                <div id="<?= $sibling->getID() ?>">
+                    <i class="<?= $sibling->getIcon() ?> fa-fw"></i>
+                    <?= $sibling->getTitle() ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </fieldset>
+
+    <div class="dialog-button-row">
+        <button type="button" data-dialog-button-type="submit">
+            Update
+        </button>
+
+        <button type="button" data-dialog-button-type="cancel">
+            Cancel
+        </button>
+    </div>
+</form>
+
+<script>
+    $(function() {
+        var $sortingContainer = $('.sortable-container');
+
+        $sortingContainer.sortable({
+            axis: 'y',
+            opacity: 0.6,
+            update : function (e, ui) {
+                var sorted = $sortingContainer.sortable('toArray');
+                $('input[name=sorting]').val(sorted);
+            }
+        });
+    });
+</script>

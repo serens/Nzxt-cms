@@ -1,0 +1,271 @@
+@import "settings";
+@import "mixins";
+@import "accent";
+@import "typography";
+@import "tooltip";
+
+.editable {
+  position: relative;
+
+  & .border {
+    @include transition(all 0.125s ease);
+
+    position: absolute;
+    background-color: $cms-dark-color;
+
+    &.left {
+      left: 0;
+      top: 0;
+      width: 2px;
+      height: 100%;
+    }
+    &.top {
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 2px;
+    }
+    &.right {
+      right: 0;
+      top: 0;
+      width: 2px;
+      height: 100%;
+    }
+    &.bottom {
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+    }
+  }
+
+  &:hover {
+    > .border {
+      @include transition(all 0.25s ease);
+      background-color: $cms-accent-color;
+    }
+
+    > .menue > .header {
+      @include transition(all 0.25s ease);
+      background-color: $cms-accent-color;
+
+      a {
+        color: $cms-accent-foreground-color-light;
+        &:hover {
+          color: $cms-accent-foreground-color;
+        }
+      }
+    }
+  }
+
+  & .menue {
+    background-color: $cms-dark-color;
+    color: $cms-dark-foreground-color;
+    overflow: hidden;
+    font-family: $cms-typography-font-family;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
+
+    .menue-row {
+      clear: both;
+      padding: 4px 6px;
+      margin: 0;
+      overflow: hidden;
+      border-bottom: 1px solid rgba($cms-dark-foreground-color, 0.4);
+      line-height: $cms-typography-line-height;
+    }
+
+    .admin-bar {
+      a.logo {
+        float: left;
+        margin: 2px 0;
+        display: inline-block;
+        text-indent: -9999px;
+        background: url(../img/logo_white.png) center center no-repeat;
+        background-size: cover;
+        width: 118px;
+        height: 20px;
+        opacity: 0.6;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      a.user {
+        float: right;
+        display: inline-block;
+        margin: 3px 0 0 0;
+      }
+    }
+
+    .breadcrumb {
+      ul {
+        overflow: hidden;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        li {
+          float: left;
+          padding: 0 5px 0 0;
+          i {
+            width: 10px;
+          }
+        }
+      }
+    }
+
+    .header {
+      @include transition(all 0.125s ease);
+      border-bottom: none;
+
+      .caption {
+        float: left;
+      }
+
+      .actions {
+        float: right;
+      }
+    }
+  }
+
+  & .content {
+    padding: 0 2px 2px 2px;
+    clear: both;
+  }
+
+  & a.cms {
+    display: inline-block;
+    color: $cms-dark-foreground-color;
+    text-decoration: none;
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+#cms-mask {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.9;
+  z-index: 9999;
+}
+
+#cms-dialog {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  overflow: hidden;
+  iframe {
+    height: 100%;
+    overflow: hidden;
+    border: 0;
+  }
+  &.left {
+    left: 0;
+  }
+  &.right {
+    right: 0;
+  }
+}
+
+#cms-loading {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  z-index: 10001;
+  background-color: $cms-dark-color;
+
+  &.loading {
+    display: block;
+  }
+
+  .spinner {
+    margin: 21px 0 0 23px;
+    height: 15px;
+    width: 15px;
+    animation: rotate-spinner 0.5s infinite linear;
+    border: 2px solid $cms-dark-foreground-color;
+    border-right-color: transparent;
+    border-radius: 50%;
+  }
+
+  @keyframes rotate-spinner {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+}
+
+/*
+ * The following selector handles content which is being edited without having a template.
+ */
+body.no-template {
+  padding: 20px;
+
+  .editable {
+    margin-bottom: 8px;
+
+    & .border {
+      background-color: $cms-dark-foreground-color;
+    }
+
+    .menue {
+      background-color: $cms-dark-foreground-color;
+      color: $cms-dark-color;
+
+      .admin-bar {
+        border-bottom-color: rgba($cms-dark-color, 0.4);
+        a {
+          &.logo {
+            background-image: url(../img/logo_black.png);
+          }
+        }
+      }
+
+      .breadcrumb {
+        border-bottom-color: rgba($cms-dark-color, 0.4);
+      }
+    }
+
+    .content {
+      padding: 20px 10px 2px 30px;
+    }
+
+    & a.cms {
+      color: rgba($cms-dark-color, 0.6);
+      &:hover {
+        color: $cms-dark-color;
+      }
+    }
+
+    &:hover {
+      > .border {
+        @include transition(all 0.25s ease);
+        background-color: $cms-accent-color;
+      }
+    }
+  }
+
+  #cms-tooltip {
+    background-color: $cms-accent-color;
+    h3 {
+      color: $cms-accent-foreground-color;
+    }
+  }
+}

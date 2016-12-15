@@ -1,0 +1,173 @@
+<?php
+    /** @var \Nzxt\Model\Node $node */
+    $node = $this->node;
+
+    /** @var \Nzxt\Model\Node $currentNode */
+    $currentNode = $this->currentNode;
+
+    /** @var \Nzxt\Model\Content\AbstractContent $content */
+    $content = $node->getContent();
+
+    /** @var \Nzxt\Model\Content\Auth\User $user */
+    $user = $this->user;
+
+    /** @var bool $firstNode */
+    $firstNode = 1 === $this->renderedNodesCount;
+
+    /** @var string $renderedContent */
+    $renderedContent = $content ? $content->render() : '';
+
+    /** @var bool $hasBodyTag */
+    $hasBodyTag = false !== strripos($renderedContent, '<html');
+
+    $ressources = '
+        <link rel="stylesheet" href="/modules/Nzxt/res/vendor/ionicons-2.0.1/css/ionicons.min.css">
+        <link rel="stylesheet" href="/modules/Nzxt/res/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/modules/Nzxt/res/css/frontend-editing.css">
+
+        <script src="/modules/Nzxt/res/vendor/jquery/jquery.js"></script>
+        <script src="/modules/Nzxt/res/vendor/jquery/jquery.easing.js"></script>
+        <script src="/modules/Nzxt/res/vendor/jquery.tooltip-1.3/jquery.tooltip.js"></script>
+        <script src="/modules/Nzxt/res/js/frontend-editing.js"></script>
+    ';
+?>
+
+<?php if ($firstNode): ?>
+    <?php if (!$hasBodyTag): ?>
+        <!DOCTYPE html>
+        <html class="no-js" lang="en" dir="ltr">
+            <head>
+                <title><?= $node->getTitle() ?> | Nzxt cms</title>
+
+                <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+                <?= $ressources ?>
+            </head>
+
+            <body class="cms no-template accent-dark">
+    <?php else: ?>
+        <?= $ressources ?>
+    <?php endif; ?>
+<?php endif; ?>
+
+<div class="cms editable">
+    <div class="cms border left"></div>
+    <div class="cms border top"></div>
+    <div class="cms border right"></div>
+    <div class="cms border bottom"></div>
+
+    <div class="cms menue">
+        <?php if ($firstNode): ?>
+            <div class="cms menue-row admin-bar">
+                <a class="cms dialog logo" data-cms-dialog-side="left" data-cms-dialog-size="0.3" href="<?= $this->linkBuilder->build('sitemap', ['#node' => $currentNode->getID()]) ?>" title="Open the sitemap panel.">
+                    Nzxt cms
+                </a>
+
+                <a class="cms user" href="<?= $this->linkBuilder->build('auth:logout') ?>" title="Log out user &quot;<?= htmlspecialchars($user->getFullname()) ?>&quot;.">
+                    <i class="fa fa-fw fa-user-circle "></i> Logged in as <?= $user->getFullname() ?>
+                </a>
+            </div>
+
+            <div class="cms menue-row breadcrumb">
+                <ul>
+                    <li>Your are here:</li>
+                    <?php foreach (array_reverse($node->getParents()) as $key => $parent): ?>
+                        <li>
+                            <?php if ($key > 0): ?>
+                                <i class="fa fa-angle-right fa-fw"></i>
+                            <?php endif; ?>
+                            <a class="cms" href="<?= $this->linkBuilder->build('node:view', ['#node' => $parent->getID()]) ?>" title="Jump into this node."><?= $parent->getTitle() ?></a>
+                        </li>
+                    <?php endforeach; ?>
+                    <li>
+                        <i class="fa fa-angle-right fa-fw"></i>
+                        <?= $node->getTitle() ?>
+                    </li>
+                </ul>
+            </div>
+        <?php endif; ?>
+
+        <div class="cms menue-row header">
+            <div class="cms caption">
+                <a class="cms" href="<?= $this->linkBuilder->build('node:view', ['#node' => $node->getID()]) ?>" title="Jump into this node.">
+                    <i class="cms fa-fw <?= $node->getIcon() ?>"></i>
+
+                    <?php if ($node->getFieldValue('hidden') == '1'): ?>
+                        <i class="cms fa fa-fw fa-eye-slash" title="This node is hidden."></i>
+                    <?php endif; ?>
+
+                    <?php if ($reference = $node->getReferenceNode()): ?>
+                        <i class="cms fa fa-fw fa-share" title="This node is a reference to node &quot;<?= $reference->getTitle() ?>&quot;."></i>
+                    <?php endif; ?>
+
+                    <span class="cms content-type">
+                        <?php if ($content): ?>
+                            <?= $content->getTitle() ?>:
+                        <?php else: ?>
+                            Node:
+                        <?php endif; ?>
+                    </span>
+
+                    <span class="cms title">
+                        "<?= $node->getTitle() ?>"
+                    </span>
+                </a>
+            </div>
+
+            <div class="cms actions">
+                <a class="cms dialog" href="<?= $this->linkBuilder->build('node:edit', ['#node' => $node->getID()]) ?>" title="Edit node &quot;<?= htmlspecialchars($node->getTitle()) ?>&quot;.">
+                    <i class="fa fa-fw fa-pencil"></i>
+                </a>
+
+                <a class="cms dialog" href="<?= $this->linkBuilder->build('node:delete', ['#node' => $node->getID()]) ?>" title="Delete node &quot;<?= htmlspecialchars($node->getTitle()) ?>&quot;.">
+                    <i class="fa fa-fw fa-trash"></i>
+                </a>
+
+                <?php if (($content && $content->canHaveChildNodes()) || !$content): ?>
+                    <a class="cms dialog" href="<?= $this->linkBuilder->build('node:add', ['#node' => $node->getID()]) ?>" title="Add a new node inside of &quot;<?= htmlspecialchars($node->getTitle()) ?>&quot;.">
+                        <i class="fa fa-fw fa-plus-circle"></i>
+                    </a>
+                <?php endif; ?>
+
+                <a class="cms dialog" href="<?= $this->linkBuilder->build('node:sort', ['#node' => $node->getID()]) ?>" title="Set the sorting order of this node.">
+                    <i class="fa fa-fw fa-sort"></i>
+                </a>
+
+                <a class="cms dialog" href="<?= $this->linkBuilder->build('node:info', ['#node' => $node->getID()]) ?>" title="The ID of this node is <?= $node->getID() ?>.">
+                    <i class="fa fa-fw fa-info-circle"></i>
+                </a>
+
+                <a class="cms collapse" href="#" title="Open / Close">
+                    <i class="fa fa-fw fa-toggle-up"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="cms content">
+        <?php if ($renderedContent): ?>
+            <?= $renderedContent ?>
+        <?php else: ?>
+            <div class="typography">
+                <h1><i class="fa fa-warning fa-fw"></i> No renderable content</h1>
+
+                <?php if ($content): ?>
+                    <p>
+                        The selected content type "<?= $node->getFieldValue('content_classname') ?>" of this node does not provide any renderable content.
+                    </p>
+                <?php else: ?>
+                    <p>
+                        The node does not have a content type assigned.
+                    </p>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+
+<?php if (!$renderedContent): ?>
+        </body>
+    </html>
+<?php endif; ?>

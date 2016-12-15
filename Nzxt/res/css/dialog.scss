@@ -1,0 +1,156 @@
+@import "settings";
+@import "mixins";
+@import "accent";
+@import "typography";
+@import "sitemap";
+@import "styledinputs";
+@import "tooltip";
+@import "userinputs";
+
+body {
+  padding: 150px 30px 30px 30px;
+  margin: 0;
+  color: $cms-accent-foreground-color;
+}
+
+/*
+::-webkit-scrollbar { width: 2px; height: 2px; }
+::-webkit-scrollbar-button { background-color: $cms-accent-foreground-color; }
+::-webkit-scrollbar-track { background-color: $cms-accent-color; }
+::-webkit-scrollbar-thumb { background-color: $cms-accent-foreground-color-light; }
+::-webkit-scrollbar-corner { background-color: $cms-accent-color; }
+*/
+
+a {
+  color: $cms-accent-foreground-color-light;
+  &:hover {
+    color: $cms-accent-foreground-color;
+  }
+}
+
+dl dd {
+  color: $cms-accent-foreground-color-light;
+}
+
+form {
+  margin: 0;
+  padding: 0;
+
+  fieldset {
+    border: 0;
+    border-top: 1px solid $cms-accent-foreground-color-very-light;
+    margin: 0 0 $cms-typography-element-space 0;
+    padding: 0;
+
+    legend {
+      margin: 0 0 $cms-typography-element-space 0;
+      padding: 0 10px 0 0;
+      font-size: 20px;
+    }
+
+    >:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  label {
+    display: block;
+    margin: 0 0 5px 0;
+  }
+}
+
+
+.help-item {
+  display: none;
+  font-style: normal;
+  font-size: 12px;
+  color: $cms-accent-foreground-color-light;
+}
+
+.dialog-header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  background-color: $cms-accent-color;
+  padding: 30px 30px 0 30px;
+  z-index: 100;
+  height: 100px;
+
+  h1 {
+    @include transition(all 0.25s ease-out);
+    clear: both;
+    padding-top: $cms-typography-element-space / 2;
+    margin-bottom: 0;
+  }
+
+  &.small {
+    height: 50px;
+    /*border-bottom: 1px solid $cms-accent-foreground-color-very-light;*/
+    box-shadow: 0px 15px 25px -15px rgba(0, 0, 0, 0.5);
+
+    h1 {
+      @include transition(all 0.25s ease-out);
+      padding-top: 0;
+      clear: none;
+      font-size: 25px;
+    }
+  }
+
+  .controls {
+    float: right;
+    overflow: hidden;
+    text-align: right;
+
+    a {
+      outline: none;
+      font-size: 13px;
+      width: 21px;
+      height: 21px;
+      text-align: center;
+      display: inline-block;
+      text-decoration: none;
+      margin: 0 0 0 5px;
+      padding: 1px;
+      color: $cms-accent-foreground-color-light;
+      border: 1px solid $cms-accent-foreground-color-light;
+      border-radius: 50%;
+      line-height: 1.55;
+
+      &:hover, &:focus {
+        border: 2px solid $cms-accent-foreground-color-light;
+        padding: 0px;
+      }
+
+      &:active, &.active {
+        background-color: $cms-accent-foreground-color;
+        color: $cms-accent-color;
+      }
+
+      &.toggle-help i {
+        text-indent: -2px;
+      }
+    }
+  }
+}
+
+.dialog-button-row {
+  clear: both;
+  overflow: hidden;
+  text-align: left;
+
+  button {
+    display: inline-block;
+    margin: 0 15px 0 0;
+  }
+}
+
+.sortable-container {
+  & > div {
+    cursor: ns-resize;
+    padding: 0 0 5px 0;
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+}

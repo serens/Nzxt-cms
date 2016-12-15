@@ -1,0 +1,31 @@
+<div id="login" class="accent-background">
+    <form action="<?= $this->form->getAttribute('action') ?>" method="<?= $this->form->getAttribute('method') ?>">
+        <h1>Login</h1>
+
+        <?php if ($this->authenfication_failed): ?>
+            <p>
+                <i class="fa fa-warning fa-fw"></i> Your password was incorrent or no user could be found.
+            </p>
+        <?php else: ?>
+            <p>
+                Welcome to Nzxt cms. Please enter your login credentials.
+            </p>
+        <?php endif; ?>
+
+        <div class="input-panel">
+            <label for="username">Username</label>
+            <?= $this->form->getElement('username')->setAttribute('id', 'username')->render() ?>
+        </div>
+
+        <div class="input-panel">
+            <label for="password">Password</label>
+            <?= $this->form->getElement('password')->setAttribute('id', 'password')->render() ?>
+        </div>
+
+        <div class="dialog-button-row">
+            <button type="submit">
+                Login
+            </button>
+        </div>
+    </form>
+</div>

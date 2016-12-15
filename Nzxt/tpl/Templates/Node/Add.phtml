@@ -1,0 +1,78 @@
+<?= $this->renderPartial($this->templateDir . '/Partials/DialogHeader.phtml', ['title' => 'Add new node']) ?>
+
+<?php if ($this->hasViewData('newNode')): ?>
+    <p>
+    A node with the id #<?= $this->newNode->getID() ?> has been created.
+    </p>
+
+    <form action="<?= $this->linkBuilder->build('node:edit', ['#node' => $this->newNode->getID()]) ?>" method="get">
+        <div class="dialog-button-row">
+            <button type="submit">
+                Edit new node <i class="fa fa-angle-right"></i>
+            </button>
+
+            <button type="button" data-dialog-button-type="close">
+                Close
+            </button>
+        </div>
+    </form>
+<?php else: ?>
+    <?php if ($this->node): ?>
+        <p>
+        The node will be created under "<?= $this->node->getTitle() ?>".
+        </p>
+    <?php endif; ?>
+
+    <form action="<?= $this->form->getAttribute('action') ?>" method="<?= $this->form->getAttribute('method') ?>">
+        <fieldset>
+            <legend>Settings</legend>
+
+            <div>
+                <label for="title">
+                    Title
+                    <div class="help-item">The title is mandatory and must be entered.</div>
+                </label>
+                <?= $this->form->getElement('title')->setAttribute('id', 'title')->render() ?>
+            </div>
+
+            <div>
+                <label for="reference">
+                    Reference
+                    <div class="help-item">If specified, the content of the selected node will be used.</div>
+                </label>
+                <?= $this->form->getElement('reference')->setAttribute('id', 'reference')->render() ?>
+            </div>
+
+            <div>
+                <label for="section">
+                    Section
+                    <div class="help-item">Defines at which position the node will be displayed on its parent node.</div>
+                </label>
+                <?= $this->form->getElement('section')->setAttribute('id', 'section')->render() ?>
+            </div>
+
+            <div>
+                <label>
+                    Content type
+                    <div class="help-item">Specifies which properties a node will have and how the node will be rendered.</div>
+                </label>
+                <?= $this->form->getElement('content_classname')->setAttribute('id', 'content_classname')->render() ?>
+            </div>
+
+            <div>
+                <?= $this->form->getElement('hidden')->setAttribute('id', 'hidden')->render() ?>
+                <label for="hidden">Hidden</label>
+            </div>
+        </fieldset>
+
+        <div class="dialog-button-row">
+            <button type="submit">
+                Create new node
+            </button>
+
+            <button type="button" data-dialog-button-type="cancel">
+                Cancel
+            </button>
+        </div>
+    </form>
+<?php endif; ?>
