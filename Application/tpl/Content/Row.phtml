@@ -1,0 +1,38 @@
+<div class="row">
+    <?php if ('12' == $this->column_definition): ?>
+        <div class="large-12 columns">
+            <?= $this->node->getRenderedChildren('column1') ?>
+        </div>
+    <?php elseif ('6 / 6' == $this->column_definition): ?>
+        <div class="large-6 columns">
+            <?= $this->node->getRenderedChildren('column1') ?>
+        </div>
+        <div class="large-6 columns">
+            <?= $this->node->getRenderedChildren('column2') ?>
+        </div>
+    <?php elseif ('8 / 4' == $this->column_definition): ?>
+        <div class="large-8 columns">
+            <?= $this->node->getRenderedChildren('column1') ?>
+        </div>
+        <div class="large-4 columns">
+            <?= $this->node->getRenderedChildren('column2') ?>
+        </div>
+    <?php elseif ('4 / 8' == $this->column_definition): ?>
+        <div class="large-4 columns">
+            <?= $this->node->getRenderedChildren('column1') ?>
+        </div>
+        <div class="large-8 columns">
+            <?= $this->node->getRenderedChildren('column2') ?>
+        </div>
+    <?php elseif ('4 / 4 / 4' == $this->column_definition): ?>
+        <div class="large-4 columns">
+            <?= $this->node->getRenderedChildren('column1') ?>
+        </div>
+        <div class="large-4 columns">
+            <?= $this->node->getRenderedChildren('column2') ?>
+        </div>
+        <div class="large-4 columns">
+            <?= $this->node->getRenderedChildren('column3') ?>
+        </div>
+    <?php endif; ?>
+</div>

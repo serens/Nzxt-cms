@@ -1,0 +1,137 @@
+<?php
+    /** @var \Nzxt\Model\Node $node */
+    $node = $this->node;
+?>
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title><?= $node->getTitle() ?></title>
+
+        <!-- Google Fonts -->
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:100,300,400,600,700" rel="stylesheet" type="text/css">
+
+        <!-- Core theme styles -->
+        <link rel="stylesheet" href="/modules/Application/res/css/foundation.css" />
+        <link rel="stylesheet" href="/modules/Application/res/css/app.css" />
+
+        <!-- Vendor styles -->
+        <link rel="stylesheet" href="/modules/Application/res/css/linear-icons.css" />
+        <link rel="stylesheet" href="/modules/Application/res/css/animate.css" />
+
+        <!-- External JavaScripts -->
+        <script src="/modules/Application/res/js/jquery.js"></script>
+        <script src="/modules/Application/res/js/modernizr.min.js"></script>
+        <script src="/modules/Application/res/js/jquery-ui.min.js"></script>
+        <script src="/modules/Application/res/js/plugins.js"></script>
+        <script src="/modules/Application/res/js/scrollReveal.min.js"></script>
+    </head>
+
+    <body>
+        <!-- Document Wrapper -->
+        <div id="wrapper" class="clearfix">
+            <!-- Header -->
+            <header id="header" class="clearfix">
+                <div id="header-wrap">
+                    <div class="row">
+                        <div class="columns medium-12">
+                            <div id="primary-menu-trigger">
+                                <i class="lnr lnr-menu"></i>
+                            </div>
+
+                            <!-- Logo -->
+                            <div id="logo">
+                                <a href="/">
+                                    <img src="/modules/Application/res/images/logo.png" alt="">
+                                </a>
+                            </div><!-- #logo end -->
+
+                            <!-- Primary Navigation -->
+                            <nav id="primary-menu">
+                                <ul class="menu single-page-nav">
+                                    <li><a href="#wrapper">Home</a></li>
+                                    <?php
+                                        /*
+                                         * We will get all children in section 'main' with a specific content type and
+                                         * make links to their ids.
+                                         */
+
+                                        $section = 'main';
+                                        $linkToContentTypes = [\Application\Model\Content\Section::class];
+                                    ?>
+
+                                    <?php foreach ($node->getChildren($section, $linkToContentTypes) as $child): ?>
+                                        <li><a href="#section-<?= $child->getID() ?>"><?= $child->getTitle() ?></a></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </nav><!-- END #primary-menu -->
+                        </div>
+                    </div>
+                </div>
+            </header><!-- END #header -->
+
+            <div id="main-content">
+                <?php
+                    /*
+                     * This will render the sub nodes of this node which are placed in the section "main".
+                     * A default page has three different sections: "main", "footer" and "copyright.
+                     * In this section we only allow specific types of sub nodes.
+                     */
+
+                    $section = 'main';
+                    $allowedTypes = [
+                        \Application\Model\Content\Row::class,
+                        \Application\Model\Content\Section::class,
+                        \Application\Model\Content\Visual::class,
+                        \Application\Model\Content\Team\Section::class,
+                        \Application\Model\Content\Service\Section::class
+                    ];
+
+                    echo $node->getRenderedChildren($section, $allowedTypes);
+                ?>
+            </div><!-- END #main-content -->
+
+            <!-- Footer -->
+            <footer id="footer" class="dark-bg">
+                <?php
+                    /*
+                     * This will render the sub nodes of this node which are placed in the section "footer".
+                     * Only rows are allowed here.
+                     */
+
+                    $section = 'footer';
+                    $allowedTypes = [\Application\Model\Content\Row::class];
+
+                    echo $node->getRenderedChildren($section, $allowedTypes);
+                ?>
+
+                <div class="row">
+                    <div class="large-12 columns">
+                        <div class="legal text-center">
+                            <?php
+                                /*
+                                 * This will render the sub node of this node which are placed in the section "copyright".
+                                 * In this section we only allow specific types of sub nodes.
+                                 */
+
+                                $section = 'copyright';
+                                $allowedTypes = [\Nzxt\Model\Content\Basic\Bodytext::class];
+
+                                echo $node->getRenderedChildren($section, $allowedTypes);
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div><!-- END #wrapper -->
+
+        <!-- Scroll To Top -->
+        <div id="scrollToTop" class="lnr lnr-arrow-up"></div>
+
+        <!-- Footer Scripts -->
+        <script src="/modules/Application/res/js/foundation.min.js"></script>
+        <script src="/modules/Application/res/js/app.js"></script>
+    </body>
+</html>
