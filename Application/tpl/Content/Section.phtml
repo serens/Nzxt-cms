@@ -14,8 +14,10 @@
         <?= $this->node->getRenderedChildren() ?>
     <?php else: ?>
         <div class="row">
-            <h2 class="section-title-block text-center title text-uppercase"><?= $this->headline ?></h2>
-            <p class="lead"><?= $this->introduction ?></p>
+            <div class="large-12 columns">
+                <h2 class="section-title-block text-center title text-uppercase"><?= $this->headline ?></h2>
+                <p class="lead"><?= $this->introduction ?></p>
+            </div>
         </div>
 
         <div class="row">
