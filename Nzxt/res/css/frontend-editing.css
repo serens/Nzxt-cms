@@ -142,9 +142,9 @@
     -o-transition: all 0.25s ease;
     transition: all 0.25s ease;
     background-color: #0572c6; }
-    .editable:hover > .menue > .header a {
+    .editable:hover > .menue > .header a.cms {
       color: rgba(255, 255, 255, 0.7); }
-      .editable:hover > .menue > .header a:hover {
+      .editable:hover > .menue > .header a.cms:hover {
         color: #fff; }
   .editable .menue {
     background-color: #232323;
@@ -155,6 +155,12 @@
     font-style: normal;
     font-weight: normal;
     text-decoration: none; }
+    .editable .menue a.cms {
+      display: inline-block;
+      color: #888;
+      text-decoration: none; }
+      .editable .menue a.cms:hover {
+        color: #fff; }
     .editable .menue .menue-row {
       clear: both;
       padding: 4px 6px;
@@ -202,12 +208,6 @@
   .editable .content {
     padding: 0 2px 2px 2px;
     clear: both; }
-  .editable a.cms {
-    display: inline-block;
-    color: #888;
-    text-decoration: none; }
-    .editable a.cms:hover {
-      color: white; }
 
 #cms-mask {
   display: none;
@@ -276,18 +276,23 @@ body.no-template {
     body.no-template .editable .menue {
       background-color: #888;
       color: #232323; }
+      body.no-template .editable .menue a.cms {
+        color: rgba(35, 35, 35, 0.6); }
+        body.no-template .editable .menue a.cms:hover {
+          color: black; }
       body.no-template .editable .menue .admin-bar {
-        border-bottom-color: rgba(35, 35, 35, 0.4); }
+        border-bottom-color: rgba(35, 35, 35, 0.6); }
         body.no-template .editable .menue .admin-bar a.logo {
           background-image: url(../img/logo_black.png); }
       body.no-template .editable .menue .breadcrumb {
-        border-bottom-color: rgba(35, 35, 35, 0.4); }
+        border-bottom-color: rgba(35, 35, 35, 0.6); }
     body.no-template .editable .content {
       padding: 20px 10px 2px 30px; }
-    body.no-template .editable a.cms {
-      color: rgba(35, 35, 35, 0.6); }
-      body.no-template .editable a.cms:hover {
-        color: #232323; }
+      body.no-template .editable .content a.cms {
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.3); }
+        body.no-template .editable .content a.cms:hover {
+          color: rgba(255, 255, 255, 0.7); }
     body.no-template .editable:hover > .border {
       -webkit-transition: all 0.25s ease;
       -moz-transition: all 0.25s ease;
@@ -299,3 +304,5 @@ body.no-template {
     background-color: #0572c6; }
     body.no-template #cms-tooltip h3 {
       color: #fff; }
+
+/*# sourceMappingURL=frontend-editing.css.map */

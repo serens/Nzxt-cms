@@ -49,7 +49,7 @@
       @include transition(all 0.25s ease);
       background-color: $cms-accent-color;
 
-      a {
+      a.cms {
         color: $cms-accent-foreground-color-light;
         &:hover {
           color: $cms-accent-foreground-color;
@@ -67,6 +67,16 @@
     font-style: normal;
     font-weight: normal;
     text-decoration: none;
+
+    a.cms {
+      display: inline-block;
+      color: $cms-dark-foreground-color;
+      text-decoration: none;
+
+      &:hover {
+        color: $cms-accent-foreground-color;
+      }
+    }
 
     .menue-row {
       clear: both;
@@ -134,15 +144,6 @@
   & .content {
     padding: 0 2px 2px 2px;
     clear: both;
-  }
-
-  & a.cms {
-    display: inline-block;
-    color: $cms-dark-foreground-color;
-    text-decoration: none;
-    &:hover {
-      color: white;
-    }
   }
 }
 
@@ -229,8 +230,16 @@ body.no-template {
       background-color: $cms-dark-foreground-color;
       color: $cms-dark-color;
 
+      a.cms {
+        color: rgba($cms-dark-color, 0.6);
+
+        &:hover {
+          color: black;
+        }
+      }
+
       .admin-bar {
-        border-bottom-color: rgba($cms-dark-color, 0.4);
+        border-bottom-color: rgba($cms-dark-color, 0.6);
         a {
           &.logo {
             background-image: url(../img/logo_black.png);
@@ -239,18 +248,20 @@ body.no-template {
       }
 
       .breadcrumb {
-        border-bottom-color: rgba($cms-dark-color, 0.4);
+        border-bottom-color: rgba($cms-dark-color, 0.6);
       }
     }
 
     .content {
       padding: 20px 10px 2px 30px;
-    }
 
-    & a.cms {
-      color: rgba($cms-dark-color, 0.6);
-      &:hover {
-        color: $cms-dark-color;
+      a.cms {
+        text-decoration: none;
+        color: $cms-accent-foreground-color-very-light;
+
+        &:hover {
+          color: $cms-accent-foreground-color-light;
+        }
       }
     }
 
