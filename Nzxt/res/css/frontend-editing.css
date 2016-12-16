@@ -209,6 +209,12 @@
     padding: 0 2px 2px 2px;
     clear: both; }
 
+/*
+ * Styles for the folder template (/modules/Nzxt/tpl/Content/Generic/Folder.phtml)
+ */
+.folder-listing {
+  margin: 0 0 25px 0; }
+
 #cms-mask {
   display: none;
   position: fixed;

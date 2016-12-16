@@ -3,7 +3,8 @@ namespace Nzxt\Model\Content;
 
 use Nzxt\Model\AbstractModel;
 use Nzxt\Model\Node;
-use \Signature\Core\AutoloaderInterface;
+use Signature\Core\AutoloaderInterface;
+use Signature\Mvc\Routing\LinkBuilder;
 use Signature\Mvc\View\PhpView;
 use Signature\Mvc\View\ViewInterface;
 use Signature\Object\ObjectProviderService;
@@ -249,7 +250,9 @@ abstract class AbstractContent extends AbstractModel
         return $view
             ->setViewData($this->getFieldValues())
             ->setViewData('node', $this->getNode())
+            ->setViewData('user', $objectProviderService->getService('AuthService')->getCurrentUser())
             ->setViewData('imageService', $objectProviderService->getService('ImageService'))
+            ->setViewData('linkBuilder', $objectProviderService->create(LinkBuilder::class))
             ->setTemplate($this->resolveViewTemplateName());
     }
 

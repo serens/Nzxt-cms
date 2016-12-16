@@ -147,6 +147,17 @@
   }
 }
 
+/*
+ * Styles for the folder template (/modules/Nzxt/tpl/Content/Generic/Folder.phtml)
+ */
+.folder-listing {
+  margin: 0 0 $cms-typography-element-space 0;
+
+  .item {
+
+  }
+}
+
 #cms-mask {
   display: none;
   position: fixed;
