@@ -40,7 +40,13 @@
   font-size: 14px;
   font-weight: normal;
   font-style: normal;
-  line-height: 1.5; }
+  line-height: 1.5;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto; }
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .typography {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale; } }
   .typography h1, .typography h2, .typography h3, .typography h4, .typography h5, .typography h6 {
     font-family: inherit;
     font-weight: normal;
@@ -154,7 +160,13 @@
     font-size: 12px;
     font-style: normal;
     font-weight: normal;
-    text-decoration: none; }
+    text-decoration: none;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto; }
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      .editable .menue {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale; } }
     .editable .menue a.cms {
       display: inline-block;
       color: #888;

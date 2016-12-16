@@ -34,6 +34,13 @@
   font-weight: normal;
   font-style: normal;
   line-height: $cms-typography-line-height;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: inherit;
