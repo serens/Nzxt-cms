@@ -120,6 +120,10 @@
         content: "\f0d7"; }
       .sitemap-tree ul li i, .node-select-input .panel ul li i, .contenttype-select-input .panel ul li i {
         width: 20px; }
+      .sitemap-tree ul li a, .node-select-input .panel ul li a, .contenttype-select-input .panel ul li a {
+        text-decoration: none; }
+        .sitemap-tree ul li a:hover, .node-select-input .panel ul li a:hover, .contenttype-select-input .panel ul li a:hover {
+          text-decoration: underline; }
       .sitemap-tree ul li .ui-droppable-hover, .node-select-input .panel ul li .ui-droppable-hover, .contenttype-select-input .panel ul li .ui-droppable-hover, .sitemap-tree ul li .ui-droppable-hover a, .node-select-input .panel ul li .ui-droppable-hover a, .contenttype-select-input .panel ul li .ui-droppable-hover a {
         background-color: #fff;
         color: #0572c6;
@@ -451,3 +455,5 @@ form {
   padding: 0 0 5px 0; }
   .sortable-container > div:last-child {
     padding-bottom: 0; }
+
+/*# sourceMappingURL=dialog.css.map */
