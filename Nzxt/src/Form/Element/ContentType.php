@@ -157,6 +157,10 @@ class ContentType extends Hidden
         $markup = $this->renderSingleListItem(); // The 1st list item represents value=""
 
         foreach ($this->contentTypes as $module => $contentTypes) {
+            if (0 == count($contentTypes)) {
+                continue;
+            }
+
             $markup .= '<li><b>' . $module . ':</b><ul>';
 
             /** @var AbstractContent $contentType */
