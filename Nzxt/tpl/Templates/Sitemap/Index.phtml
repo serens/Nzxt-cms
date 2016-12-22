@@ -30,9 +30,25 @@
 
 <script>
     $(function() {
-        var $container = $('.sitemap-tree');
-
         var Sitemap = {
+            init: function() {
+                $('.sitemap-tree').fileTree({
+                    persist: true,
+                    cookieName: 'Nzxt.fileTree.lastState',
+                    root: <?= $this->startNode->getID() ?>,
+                    script: '<?= $this->linkBuilder->build('sitemap:ajax:children') ?>',
+                    scriptParamName: 'parent',
+                    triggerSelector: 'li a.toggle',
+                    expandSpeed: 500,
+                    collapseSpeed: 250,
+                    expandEasing: 'easeOutExpo',
+                    collapseEasing: 'easeOutExpo',
+                    onDataLoaded: this.renderData,
+                    onSelect: this.onSelect,
+                    onBeforeLoad: this.onBeforeLoad,
+                    onAfterLoad: this.onAfterLoad
+                });
+            },
             dropHandler: function(e, ui) {
                 var $source  = ui.draggable.find('span');
                 var $target  = $(this);
@@ -86,11 +102,11 @@
                     }
 
                     data.sections[section].forEach(function(child) {
-                        var movable  = child.isMovable ? 'data-movable' : '';
-                        var target   = child.isDropTarget ? 'data-target' : '';
-                        var icon     = '<i class="' + child.icon + '"></i>';
-                        var caption  = '<a class="caption" title="ID #' + child.id + '" href="' + child.uri + '">' + child.title + '</a>';
-                        var item     = '<span data-node="' + child.id + '" ' + target + '>' + icon + caption + '</span>';
+                        var movable = child.isMovable ? 'data-movable' : '';
+                        var target  = child.isDropTarget ? 'data-target' : '';
+                        var icon    = '<i class="' + child.icon + '"></i>';
+                        var caption = '<a class="caption" title="ID #' + child.id + '" href="' + child.uri + '">' + child.title + '</a>';
+                        var item    = '<span data-node="' + child.id + '" ' + target + '>' + icon + caption + '</span>';
 
                         html += (child.hasChildren)
                             ? '<li ' + movable + ' class="collapsed"><a class="toggle" href="#" rel="' + child.id + '"><i class="fa"></i></a>' + item + '</li>'
@@ -106,21 +122,6 @@
             }
         };
 
-        $container.fileTree({
-            persist: true,
-            cookieName: 'Nzxt.fileTree.lastState',
-            root: <?= $this->startNode->getID() ?>,
-            script: '<?= $this->linkBuilder->build('sitemap:ajax:children') ?>',
-            scriptParamName: 'parent',
-            triggerSelector: 'li a.toggle',
-            expandSpeed: 500,
-            collapseSpeed: 250,
-            expandEasing: 'easeOutExpo',
-            collapseEasing: 'easeOutExpo',
-            onDataLoaded: Sitemap.renderData,
-            onSelect: Sitemap.onSelect,
-            onBeforeLoad: Sitemap.onBeforeLoad,
-            onAfterLoad: Sitemap.onAfterLoad
-        });
+        Sitemap.init();
     });
 </script>
