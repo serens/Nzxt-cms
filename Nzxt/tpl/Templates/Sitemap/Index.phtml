@@ -3,7 +3,7 @@
 <div class="sitemap-breadcrumb">
     <?php if ($this->startNode): ?>
         <ul>
-            <?php foreach (array_reverse($this->startNode->getParents()) as $key => $parent): ?>
+            <?php foreach (($parents = array_reverse($this->startNode->getParents())) as $key => $parent): ?>
                 <li>
                     <?php if ($key > 0): ?>
                         <i class="fa fa-angle-right"></i>
@@ -12,7 +12,9 @@
                 </li>
             <?php endforeach; ?>
             <li>
-                <i class="fa fa-angle-right"></i>
+                <?php if (count($parents)): ?>
+                    <i class="fa fa-angle-right"></i>
+                <?php endif; ?>
                 <?= $this->startNode->getTitle() ?>
             </li>
         </ul>
