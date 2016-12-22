@@ -2,6 +2,10 @@
 
 <div class="sitemap-breadcrumb">
     <?php if ($this->startNode): ?>
+        <div class="help-item">
+            This is the node you are currently editing and the parents of that node.
+        </div>
+
         <ul>
             <?php foreach (($parents = array_reverse($this->startNode->getParents())) as $key => $parent): ?>
                 <li>
