@@ -33,30 +33,29 @@ dl dd {
 }
 
 form {
-  margin: 0;
+  @include reset;
+}
+
+fieldset {
+  border: 0;
+  border-top: 1px solid $cms-accent-foreground-color-very-light;
+  margin: 0 0 $cms-typography-element-space 0;
   padding: 0;
 
-  fieldset {
-    border: 0;
-    border-top: 1px solid $cms-accent-foreground-color-very-light;
+  legend {
     margin: 0 0 $cms-typography-element-space 0;
-    padding: 0;
-
-    legend {
-      margin: 0 0 $cms-typography-element-space 0;
-      padding: 0 10px 0 0;
-      font-size: 20px;
-    }
-
-    >:last-child {
-      margin-bottom: 0;
-    }
+    padding: 0 10px 0 0;
+    font-size: 20px;
   }
 
-  label {
-    display: block;
-    margin: 0 0 5px 0;
+  >:last-child {
+    margin-bottom: 0;
   }
+}
+
+label {
+  display: block;
+  margin: 0 0 5px 0;
 }
 
 

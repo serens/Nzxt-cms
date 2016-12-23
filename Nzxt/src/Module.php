@@ -81,6 +81,11 @@ class Module extends AbstractModule
                     'ControllerClassname' => SitemapController::class,
                     'ActionName'          => 'move',
                 ],
+                'sitemap:ajax:search' => [
+                    'Uris'                => ['/sitemap/search'],
+                    'ControllerClassname' => SitemapController::class,
+                    'ActionName'          => 'search',
+                ],
                 'sitemap' => [
                     'Uris'                => ['/sitemap/#node'],
                     'ControllerClassname' => SitemapController::class,

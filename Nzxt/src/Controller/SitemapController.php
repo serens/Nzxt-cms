@@ -95,4 +95,47 @@ class SitemapController extends AbstractBackendController
             return json_encode(['status' => $status]);
         }
     }
+
+    /**
+     * Searches for nodes and returns the result in a json-encoded string.
+     * @return string
+     */
+    public function searchAction(): string
+    {
+        $needle = $this->request->hasParameter('needle') ? $this->request->getParameter('needle') : '';
+        $searchResult = [
+            'query'  => $needle,
+            'result' => [],
+        ];
+
+        if ('' !== $needle) {
+            $nodes = Node::findByQuery(
+                '*',
+                is_numeric($needle) ? sprintf('id = %d', (int) $needle) : sprintf('title LIKE "%%%s%%"', $needle)
+            );
+
+            /** @var Node $node */
+            foreach ($nodes as $node) {
+                $meta = ['ID: ' . $node->getID()];
+
+                if ($content = $node->getContent()) {
+                    $meta[] = 'Type: ' . $content->getTitle();
+                }
+
+                if ($section = $node->getFieldValue('section')) {
+                    $meta[] = 'Section: ' . $section;
+                }
+
+                $searchResult['result'][] = [
+                    'node'  => $node->getID(),
+                    'title' => $node->getTitle(),
+                    'uri'   => $this->linkBuilder->build('node:view', ['#node' => $node->getID()]),
+                    'icon'  => $node->getIcon(),
+                    'meta'  => implode(', ', $meta),
+                ];
+            }
+        }
+
+        return json_encode($searchResult);
+    }
 }

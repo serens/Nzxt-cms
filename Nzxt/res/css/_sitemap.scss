@@ -3,13 +3,11 @@ $droppable-padding: 4px;
 $border-radius: 4px;
 
 .sitemap-breadcrumb {
-  overflow: hidden;
   ul {
     overflow: hidden;
     list-style-type: none;
-    margin: 0 0 5px 0;
-    padding: 5px 0;
-    border-bottom: 1px solid $cms-accent-foreground-color-very-light;
+    margin: 0 0 15px 0;
+    padding: 0;
     li {
       float: left;
       padding: 0 10px 0 0;
@@ -22,6 +20,40 @@ $border-radius: 4px;
          text-decoration: underline;
         }
       }
+    }
+  }
+}
+
+.sitemap-search {
+  .search-result {
+    display: none;
+
+    .result-listing {
+      display: none;
+
+      ol {
+        @include reset;
+
+        list-style-type: none;
+
+        li {
+          margin: 0 0 10px 0;
+          padding: 0;
+
+          .header {
+          }
+
+          .meta {
+            padding-left: 1.5em;
+            display: block;
+            color: $cms-accent-foreground-color-light;
+          }
+        }
+      }
+    }
+
+    .no-results {
+      display: none;
     }
   }
 }

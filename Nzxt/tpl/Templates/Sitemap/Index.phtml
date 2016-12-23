@@ -1,9 +1,11 @@
 <?= $this->renderPartial($this->templateDir . '/Partials/DialogHeader.phtml', ['title' => 'Sitemap']) ?>
 
-<div class="sitemap-breadcrumb">
+<fieldset class="sitemap-breadcrumb">
+    <legend>You are here</legend>
+
     <?php if ($this->startNode): ?>
         <div class="help-item">
-            This is the node you are currently editing and the parents of that node.
+            This is the path to the node you are editing right now.
         </div>
 
         <ul>
@@ -23,31 +25,72 @@
             </li>
         </ul>
     <?php endif; ?>
-</div>
+</fieldset>
 
-<div class="sitemap-tree">
-</div>
+<fieldset class="sitemap-search">
+    <legend>Search</legend>
+
+    <form action="<?= $this->linkBuilder->build('sitemap:ajax:search') ?>" method="get">
+        <label for="needle">
+            Search for title or id
+            <div class="help-item">You can search for nodes by entering its title or node id.</div>
+        </label>
+
+        <input type="text" id="needle" name="needle" value="">
+
+        <div class="search-result">
+            <div class="result-listing">
+
+            </div>
+
+            <div class="no-results">
+                <i class="fa fa-fw fa-info-circle"></i> No nodes found.
+            </div>
+        </div>
+    </form>
+</fieldset>
+
+<fieldset class="sitemap-tree">
+    <legend>Sitemap</legend>
+
+    <div class="help-item">
+        <p>You can drag a node into another node to change the parent of a node.</p>
+    </div>
+
+    <div class="sitemap-content"></div>
+</fieldset>
 
 <script>
     $(function() {
+        var AnimationConfig = {
+            duration: 500, easing: 'easeOutExpo'
+        };
+
         var Sitemap = {
+            container: $('.sitemap-tree'),
             init: function() {
-                $('.sitemap-tree').fileTree({
+                $('.sitemap-content', this.container).fileTree({
                     persist: true,
                     cookieName: 'Nzxt.fileTree.lastState',
                     root: <?= $this->startNode->getID() ?>,
                     script: '<?= $this->linkBuilder->build('sitemap:ajax:children') ?>',
                     scriptParamName: 'parent',
                     triggerSelector: 'li a.toggle',
-                    expandSpeed: 500,
-                    collapseSpeed: 250,
-                    expandEasing: 'easeOutExpo',
-                    collapseEasing: 'easeOutExpo',
+                    expandSpeed: AnimationConfig.duration,
+                    collapseSpeed: AnimationConfig.duration,
+                    expandEasing: AnimationConfig.easing,
+                    collapseEasing: AnimationConfig.easing,
                     onDataLoaded: this.renderData,
                     onSelect: this.onSelect,
                     onBeforeLoad: this.onBeforeLoad,
                     onAfterLoad: this.onAfterLoad
                 });
+            },
+            hide: function() {
+                this.container.stop().fadeOut(AnimationConfig);
+            },
+            show: function() {
+                this.container.stop().fadeIn(AnimationConfig);
             },
             dropHandler: function(e, ui) {
                 var $source  = ui.draggable.find('span');
@@ -122,6 +165,85 @@
             }
         };
 
+        var Search = {
+            container: $('.sitemap-search'),
+            busy: false,
+            init: function() {
+                $('input', this.container).on('keyup', function() {
+                    if ($(this).val().length >= 1) {
+                        Sitemap.hide();
+                        Search.doSearch();
+                    } else {
+                        Sitemap.show();
+                        Search.Result.hide();
+                    }
+                })
+            },
+            doSearch: function() {
+                if (Search.busy) {
+                    return;
+                }
+
+                var $form = $('form', this.container);
+
+                Search.busy = true;
+                parent.Nzxt.showLoading(true);
+
+                $.ajax($form.attr('action'), {
+                    method: $form.attr('method').toUpperCase(),
+                    data: $form.serialize(),
+                    cache: false,
+                    dataType: 'json',
+                    success: function(data) {
+                        parent.Nzxt.showLoading(false);
+                        Search.Result.renderData(data);
+                        Search.Result.show();
+                        Search.busy = false;
+                    }
+                });
+            },
+            Result: {
+                container: $('.search-result'),
+                hide: function() {
+                    this.container.stop().fadeOut(AnimationConfig);
+                },
+                show: function() {
+                    this.container.stop().fadeIn(AnimationConfig);
+                },
+                renderData: function(data) {
+                    var $noResults = $('.no-results', this.container);
+                    var $listing   = $('.result-listing', this.container);
+
+                    if (0 === data['result'].length) {
+                        $noResults.show();
+                        $listing.hide();
+                    } else {
+                        var html = '';
+
+                        html += (1 == data['result'].length)
+                            ? '<li>1 node found:</li>'
+                            : '<li>' + data['result'].length + ' nodes found:</li>';
+
+                        data['result'].forEach(function (resultItem) {
+                            html += '<li>';
+                            html += '<div class="header">';
+                            html += '<i class="' + resultItem['icon'] + ' fa-fw"></i> ';
+                            html += '<a href="#" onclick="parent.Nzxt.Dialog.closeAndGoto(\'' + resultItem['uri'] + '\');">' + resultItem['title'] + '</a>';
+                            html += '</div>';
+                            html += '<div class="meta">';
+                            html += resultItem['meta'];
+                            html += '</div>';
+                            html += '</li>';
+                        });
+
+                        $noResults.hide();
+                        $listing.html('<ol>' + html + '</ol>').show();
+                    }
+                }
+            }
+        };
+
         Sitemap.init();
+        Search.init();
     });
 </script>
