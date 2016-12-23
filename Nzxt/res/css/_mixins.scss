@@ -5,3 +5,16 @@
   -o-transition: $args;
   transition: $args;
 }
+
+@mixin filter($args...) {
+  -webkit-filter: $args;
+  -moz-filter: $args;
+  -ms-filter: $args;
+  -o-filter: $args;
+  filter: $args;
+}
+
+@mixin reset() {
+  margin: 0;
+  padding: 0;
+}
