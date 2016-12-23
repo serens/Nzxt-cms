@@ -30,24 +30,24 @@
 // For details, visit http://creativecommons.org/licenses/by/3.0/us/
 //
 if (jQuery) (function($){
-	$.extend($.fn, {
-		fileTree: function(o) {
-			// Defaults
-			o = o || {};
+    $.extend($.fn, {
+        fileTree: function(o) {
+            // Defaults
+            o = o || {};
 
-			if (o.root == undefined) o.root = '/';
-			if (o.script == undefined) o.script = 'jquery.filetree.php';
-			if (o.folderEvent == undefined) o.folderEvent = 'click';
-			if (o.expandSpeed == undefined) o.expandSpeed = 0;
-			if (o.collapseSpeed == undefined) o.collapseSpeed = 0;
-			if (o.expandEasing == undefined) o.expandEasing = null;
-			if (o.collapseEasing == undefined) o.collapseEasing = null;
+            if (o.root == undefined) o.root = '/';
+            if (o.script == undefined) o.script = 'jquery.filetree.php';
+            if (o.folderEvent == undefined) o.folderEvent = 'click';
+            if (o.expandSpeed == undefined) o.expandSpeed = 0;
+            if (o.collapseSpeed == undefined) o.collapseSpeed = 0;
+            if (o.expandEasing == undefined) o.expandEasing = null;
+            if (o.collapseEasing == undefined) o.collapseEasing = null;
 
-			// Modifications
-			if (o.scriptParamName == undefined) o.scriptParamName = 'dir';
-			if (o.onDataLoaded == undefined) o.onDataLoaded = function (data) { return data };
+            // Modifications
+            if (o.scriptParamName == undefined) o.scriptParamName = 'dir';
+            if (o.onDataLoaded == undefined) o.onDataLoaded = function (data) { return data };
             if (o.onBeforeLoad == undefined) o.onBeforeLoad = $.noop;
-			if (o.onAfterLoad == undefined) o.onAfterLoad = $.noop;
+            if (o.onAfterLoad == undefined) o.onAfterLoad = $.noop;
             if (o.onSelect == undefined) o.onSelect = $.noop;
             if (o.triggerSelector == undefined) o.triggerSelector = 'li a';
             if (o.returnType == undefined) o.returnType = 'json';
@@ -55,7 +55,7 @@ if (jQuery) (function($){
             if (o.persist == undefined) o.persist = false;
             if (o.cookieName == undefined) o.cookieName = 'fileTree';
 
-			$(this).each(function() {
+            $(this).each(function() {
                 var $container = $(this);
 
                 /**
@@ -63,32 +63,32 @@ if (jQuery) (function($){
                  * @param $c
                  * @param root
                  */
-				function loadTree($c, root) {
+                function loadTree($c, root) {
                     o.onBeforeLoad.call();
 
-					$c.addClass(o.waitClass);
-					$('.jqueryFileTree.start').remove();
+                    $c.addClass(o.waitClass);
+                    $('.jqueryFileTree.start').remove();
 
-					$.post(o.script, o.scriptParamName + '=' + root, function(data) {
-						data = o.onDataLoaded(data); // Pass data to modify-Callback
+                    $.post(o.script, o.scriptParamName + '=' + root, function(data) {
+                        data = o.onDataLoaded(data); // Pass data to modify-Callback
 
-						$c.find('.start').html('');
-						$c.removeClass(o.waitClass).append(data);
+                        $c.find('.start').html('');
+                        $c.removeClass(o.waitClass).append(data);
 
-						(o.root == root)
+                        (o.root == root)
                             ? $c.find('UL:hidden').show()
                             : $c.find('UL:hidden').slideDown({ duration: o.expandSpeed, easing: o.expandEasing });
 
-						bindTree($c);
-					}, o.returnType);
-				}
+                        bindTree($c);
+                    }, o.returnType);
+                }
 
                 /**
                  * Binds click events on new inserted markup.
                  * @param $c
                  */
-				function bindTree($c) {
-					$c.find(o.triggerSelector).bind(o.folderEvent, function(e) {
+                function bindTree($c) {
+                    $c.find(o.triggerSelector).bind(o.folderEvent, function(e) {
                         e.preventDefault();
 
                         if ($(this).parent().hasClass('collapsed')) {
@@ -101,7 +101,7 @@ if (jQuery) (function($){
                             $(this).parent().find('UL').slideUp({ duration: o.collapseSpeed, easing: o.collapseEasing });
                             $(this).parent().removeClass('expanded').addClass('collapsed');
                         }
-					});
+                    });
 
                     // Apply caption click callback
                     $c.find('a.caption').click(function(e) {
@@ -115,7 +115,7 @@ if (jQuery) (function($){
                     if (o.persist) {
                         persist($container);
                     }
-				}
+                }
 
                 /**
                  * Reads the value of a cookie.
@@ -168,17 +168,17 @@ if (jQuery) (function($){
                     */
                 }
 
-				// Loading message
-				$container.html('<ul class="jqueryFileTree start"><li class="' + o.waitClass + '"></li></ul>');
+                // Loading message
+                $container.html('<ul class="jqueryFileTree start"><li class="' + o.waitClass + '"></li></ul>');
 
-				// Get the initial file list
-				loadTree($container, o.root);
+                // Get the initial file list
+                loadTree($container, o.root);
 
                 // Get last state, if available
                 if (o.persist) {
                     restore($container);
                 }
-			});
-		}
-	});
+            });
+        }
+    });
 })(jQuery);
