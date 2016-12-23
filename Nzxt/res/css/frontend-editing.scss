@@ -120,10 +120,9 @@
 
     .breadcrumb {
       ul {
+        @include reset;
         overflow: hidden;
         list-style-type: none;
-        margin: 0;
-        padding: 0;
         li {
           float: left;
           padding: 0 5px 0 0;

@@ -5,13 +5,12 @@
   padding: 2px 8px 3px 8px;
 
   h3 {
+    @include reset;
     font-family: $cms-typography-font-family;
     font-size: $cms-typography-font-size;
     font-weight: 100;
     font-style: normal;
     line-height: $cms-typography-line-height;
-    padding: 0;
-    margin: 0;
     color: $cms-dark-foreground-color;
     white-space: pre;
   }

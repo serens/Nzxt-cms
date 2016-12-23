@@ -43,10 +43,9 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
+    @include reset;
     font-family: inherit;
     font-weight: normal;
-    margin: 0;
-    padding: 0;
     line-height: $cms-typography-line-height;
   }
 
