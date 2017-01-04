@@ -271,15 +271,6 @@ body.no-template {
 
     .content {
       padding: 20px 10px 2px 30px;
-
-      a.cms {
-        text-decoration: none;
-        color: $cms-accent-foreground-color-very-light;
-
-        &:hover {
-          color: $cms-accent-foreground-color-light;
-        }
-      }
     }
 
     &:hover {

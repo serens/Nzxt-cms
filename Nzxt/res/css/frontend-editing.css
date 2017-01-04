@@ -306,11 +306,6 @@ body.no-template {
         border-bottom-color: rgba(35, 35, 35, 0.6); }
     body.no-template .editable .content {
       padding: 20px 10px 2px 30px; }
-      body.no-template .editable .content a.cms {
-        text-decoration: none;
-        color: rgba(255, 255, 255, 0.3); }
-        body.no-template .editable .content a.cms:hover {
-          color: rgba(255, 255, 255, 0.7); }
     body.no-template .editable:hover > .border {
       -webkit-transition: all 0.25s ease;
       -moz-transition: all 0.25s ease;
