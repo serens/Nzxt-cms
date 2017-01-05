@@ -444,26 +444,25 @@ label {
     text-align: right; }
     .dialog-header .controls a {
       outline: none;
-      font-size: 13px;
-      width: 21px;
-      height: 21px;
+      font-size: 12px;
+      width: 22px;
+      height: 22px;
       text-align: center;
-      display: inline-block;
+      float: left;
+      display: block;
       text-decoration: none;
-      margin: 0 0 0 5px;
+      margin: 0 0 0 10px;
       padding: 1px;
       color: rgba(255, 255, 255, 0.7);
       border: 1px solid rgba(255, 255, 255, 0.7);
       border-radius: 50%;
-      line-height: 1.55; }
+      line-height: 1.75; }
       .dialog-header .controls a:hover, .dialog-header .controls a:focus {
         border: 2px solid rgba(255, 255, 255, 0.7);
         padding: 0px; }
       .dialog-header .controls a:active, .dialog-header .controls a.active {
         background-color: #fff;
         color: #0572c6; }
-      .dialog-header .controls a.toggle-help i {
-        text-indent: -2px; }
 
 .dialog-button-row {
   clear: both;

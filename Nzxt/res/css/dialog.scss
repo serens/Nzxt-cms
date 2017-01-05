@@ -103,18 +103,19 @@ label {
 
     a {
       outline: none;
-      font-size: 13px;
-      width: 21px;
-      height: 21px;
+      font-size: 12px;
+      width: 22px;
+      height: 22px;
       text-align: center;
-      display: inline-block;
+      float: left;
+      display: block;
       text-decoration: none;
-      margin: 0 0 0 5px;
+      margin: 0 0 0 10px;
       padding: 1px;
       color: $cms-accent-foreground-color-light;
       border: 1px solid $cms-accent-foreground-color-light;
       border-radius: 50%;
-      line-height: 1.55;
+      line-height: 1.75;
 
       &:hover, &:focus {
         border: 2px solid $cms-accent-foreground-color-light;
@@ -124,10 +125,6 @@ label {
       &:active, &.active {
         background-color: $cms-accent-foreground-color;
         color: $cms-accent-color;
-      }
-
-      &.toggle-help i {
-        text-indent: -2px;
       }
     }
   }
