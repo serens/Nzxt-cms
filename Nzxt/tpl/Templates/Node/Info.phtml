@@ -119,6 +119,25 @@
                         None
                     <?php endif; ?>
                 </dd>
+                <dt>Can have sub nodes</dt>
+                <?php if ($content->canHaveChildNodes()): ?>
+                    <dd>yes</dd>
+
+                    <dt>Allowed types</dt>
+                    <dd>
+                        <?php if (count($allowed = $content->getAllowedSubContentForChildren())): ?>
+                            <ul class="fa-ul">
+                                <?php foreach ($allowed as $className): ?>
+                                    <li><?= $className ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php else: ?>
+                            All
+                        <?php endif; ?>
+                    </dd>
+                <?php else: ?>
+                    <dd>no</dd>
+                <?php endif; ?>
             </dl>
         <?php else: ?>
             <p>
