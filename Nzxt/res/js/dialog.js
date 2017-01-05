@@ -5,6 +5,7 @@ var DialogController = DialogController || {
         var $dialogCloseToggle = $('a.dialog-close', $header);
         var $helpToggle = $('a.toggle-help', $header);
         var $helpItems = $('.help-item');
+        var $window = $(window);
 
         // Assign handler to cancel icon
         if (this.isDialog) {
@@ -28,9 +29,9 @@ var DialogController = DialogController || {
             });
         }
 
-        //
-        $(window).on('scroll', function() {
-            ($(window).scrollTop() > 25)
+        // Add eventHandler for scroll event
+        $window.on('scroll', function() {
+            ($window.scrollTop() > 25)
                 ? $header.addClass('small')
                 : $header.removeClass('small');
         });
