@@ -65,6 +65,9 @@ var Nzxt = Nzxt || {
  * Dialog handler which can open a dialog.
  */
 Nzxt.Dialog = {
+    init: function() {
+        this.container = $('#cms-dialog');
+    },
     open: function(src, side, size) {
         if (size <= 0) {
             size = 0.3;
@@ -75,14 +78,15 @@ Nzxt.Dialog = {
         }
 
         var width = Math.round(window.innerWidth * size);
-        var $container = $('#cms-dialog');
         var $newIframe = $('<iframe />');
 
         Nzxt.showMask(true);
         Nzxt.showLoading(true);
 
-        $container
+        this.container
             .html('')
+            .data('original-size', size)
+            .data('maximized', false)
             .css({width: 0, opacity: 1})
             .show()
             .removeClass('left right')
@@ -90,8 +94,8 @@ Nzxt.Dialog = {
             .animate({width: width}, Nzxt.animation.speed, Nzxt.animation.easing);
 
         $newIframe
-            .appendTo($container)
-            .css({marginLeft: (side == 'left' ? -width : width) + 'px', width: width + 'px'})
+            .appendTo(this.container)
+            .css({marginLeft: (side == 'left' ? -width : width) + 'px', width: '100%'})
             .on('load', function() {
                 Nzxt.showLoading(false);
                 $newIframe.animate({marginLeft: 0}, Nzxt.animation.speed, Nzxt.animation.easing);
@@ -101,7 +105,7 @@ Nzxt.Dialog = {
     close: function(afterAnimation) {
         Nzxt.showMask(false);
 
-        $('#cms-dialog').animate({width: 0}, Nzxt.animation.speed / 2, Nzxt.animation.easing, function() {
+        this.container.animate({width: 0}, Nzxt.animation.speed / 2, Nzxt.animation.easing, function() {
             $(this).html('').hide();
 
             if ('function' == typeof afterAnimation) {
@@ -116,9 +120,18 @@ Nzxt.Dialog = {
         this.close(function() {
             window.location.assign(location);
         })
+    },
+    maximize: function() {
+        var isMaximized = this.container.data('maximized') == true;
+        var width = isMaximized ? parseFloat(this.container.data('original-size')) : 0.5;
+
+        this.container
+            .animate({width: Math.round(window.innerWidth * width)}, Nzxt.animation.speed, Nzxt.animation.easing)
+            .data('maximized', !isMaximized);
     }
 };
 
 $(function() {
     Nzxt.init();
+    Nzxt.Dialog.init();
 });

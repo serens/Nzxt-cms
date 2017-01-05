@@ -4,6 +4,7 @@ var DialogController = DialogController || {
         var $header = $('.dialog-header');
         var $dialogCloseToggle = $('a.dialog-close', $header);
         var $helpToggle = $('a.toggle-help', $header);
+        var $sizeToggle = $('a.toggle-panelsize', $header);
         var $helpItems = $('.help-item');
         var $window = $(window);
 
@@ -24,10 +25,17 @@ var DialogController = DialogController || {
         } else {
             $helpToggle.click(function(e) {
                 e.preventDefault();
-                $helpToggle.toggleClass('active').blur();
-                $helpItems.fadeToggle();
+                $(this).toggleClass('active').blur();
+                $helpItems.stop().fadeToggle();
             });
         }
+
+        // Assign handler to resize dialog panel
+        $sizeToggle.click(function(e) {
+            e.preventDefault();
+            $(this).toggleClass('active').blur();
+            parent.Nzxt.Dialog.maximize();
+        });
 
         // Add eventHandler for scroll event
         $window.on('scroll', function() {
