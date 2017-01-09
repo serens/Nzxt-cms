@@ -19,7 +19,7 @@ class Bodytext extends AbstractContent
      */
     protected $fieldDescription = [
         'content' => [
-            'elementClassname' => \Signature\Html\Form\Element\Textarea::class,
+            'elementClassname' => \Nzxt\Form\Element\Wysiwyg::class,
             'label' => 'Content',
         ],
     ];

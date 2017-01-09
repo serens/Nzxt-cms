@@ -21,7 +21,7 @@ class Paragraph extends AbstractContent
             'label' => 'Style',
         ],
         'content' => [
-            'elementClassname' => \Signature\Html\Form\Element\Textarea::class,
+            'elementClassname' => \Nzxt\Form\Element\Wysiwyg::class,
             'label' => 'Content',
         ],
     ];

@@ -87,8 +87,33 @@ var DialogController = DialogController || {
         });
     },
     initVendorPlugins: function() {
+        // RTE Editor
+        $('textarea[data-rte-enabled]').trumbowyg({
+            removeformatPasted: true,
+            btnsDef: {
+                justifyDrop: {
+                    dropdown: ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+                    ico: 'justifyLeft'
+                },
+                listDrop: {
+                    dropdown: ['unorderedList', 'orderedList'],
+                    ico: 'orderedList'
+                }
+            },
+            btns: [
+                ['undo', 'redo'],
+                ['formatting', 'justifyDrop', 'listDrop', 'link'],
+                'btnGrp-design',
+                ['superscript', 'subscript'],
+                ['removeformat'],
+                ['viewHTML', 'fullscreen']
+            ]
+        }).on('tbwinit', function() {
+            $('.trumbowyg-overlay').css({top: 0, botton: 0, height: 'auto'});
+        });
+
         // Init tooltip plugin
-        $('.cms [title]').tooltip({
+        $('[title]').tooltip({
             showURL: false,
             fade: 250,
             delay: 350,

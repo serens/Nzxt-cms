@@ -6,6 +6,7 @@
 @import "styledinputs";
 @import "tooltip";
 @import "userinputs";
+@import "rte";
 
 body {
   padding: 150px 30px 30px 30px;
@@ -138,6 +139,7 @@ label {
   button {
     display: inline-block;
     margin: 0 15px 0 0;
+    min-width: 125px;
   }
 }
 

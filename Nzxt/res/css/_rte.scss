@@ -1,0 +1,451 @@
+$button-size: 25px;
+
+#trumbowyg-icons {
+  overflow: hidden;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+
+  svg {
+    height: 0;
+    width: 0;
+  }
+}
+
+.trumbowyg-box {
+  margin: 0 0 $cms-typography-element-space 0;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  svg {
+    width: 15px;
+    height: 100%;
+    fill: $cms-accent-foreground-color;
+  }
+}
+
+.trumbowyg-box,
+.trumbowyg-editor {
+  display: block;
+  position: relative;
+  min-height: 300px;
+  overflow: scroll;
+}
+
+.trumbowyg-box .trumbowyg-editor {
+  margin: 0 auto;
+}
+
+.trumbowyg-box.trumbowyg-fullscreen {
+}
+
+.trumbowyg-editor,
+.trumbowyg-textarea {
+  @extend textarea;
+  position: relative;
+  box-sizing: border-box;
+  min-height: 300px;
+  resize: none;
+  outline: none;
+  overflow: auto;
+  margin: 0 !important;
+}
+
+.trumbowyg-box.trumbowyg-editor-visible {
+  .trumbowyg-textarea {
+    display: none;
+    /*
+    height: 1px !important;
+    width: 25%;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: none;
+    opacity: 0 !important;
+    */
+  }
+}
+
+.trumbowyg-box.trumbowyg-editor-hidden {
+  .trumbowyg-textarea {
+    display: block;
+    font-family: 'Courier New';
+  }
+  .trumbowyg-editor {
+    display: none;
+  }
+}
+
+.trumbowyg-box.trumbowyg-disabled {
+  .trumbowyg-textarea {
+    opacity: 0.8;
+    background: none;
+  }
+}
+
+.trumbowyg-editor[contenteditable=true]:empty:not(:focus)::before {
+  content: attr(placeholder);
+  color: $cms-dark-color;
+  pointer-events: none;
+}
+
+.trumbowyg-button-pane {
+  background-color: $cms-accent-color;
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  min-height: $button-size;
+  list-style-type: none;
+  line-height: $button-size;
+  margin: 0 0 5px 0;
+
+  .trumbowyg-button-group {
+    display: flex;
+    flex-flow: row wrap;
+
+    .trumbowyg-fullscreen-button svg {
+      color: transparent;
+    }
+
+    &:not(:empty) + .trumbowyg-button-group::before {
+      content: " ";
+      display: block;
+      width: 1px;
+      background: $cms-accent-foreground-color-very-light;
+      margin: 5px;
+      height: $button-size - 5px -5px;
+    }
+  }
+
+  button {
+    display: block;
+    position: relative;
+    width: $button-size;
+    height: $button-size;
+    padding: 0px 2px !important;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+    background: none;
+
+    &.trumbowyg-textual-button {
+      width: auto;
+      line-height: $button-size;
+    }
+  }
+
+  &.trumbowyg-disable button:not(.trumbowyg-not-disable):not(.trumbowyg-active),
+  .trumbowyg-disabled & button:not(.trumbowyg-not-disable):not(.trumbowyg-viewHTML-button) {
+    opacity: 0.2;
+    cursor: default;
+  }
+  &.trumbowyg-disable,
+  .trumbowyg-disabled & {
+    .trumbowyg-button-group::before {
+      background: $cms-accent-foreground-color-very-light;
+    }
+  }
+
+  button:not(.trumbowyg-disable):hover,
+  button:not(.trumbowyg-disable):focus,
+  button.trumbowyg-active {
+    background-color: $cms-accent-foreground-color-very-light;
+  }
+
+  .trumbowyg-open-dropdown {
+    &::after {
+      display: block;
+      content: " ";
+      position: absolute;
+      top: 19px;
+      right: 3px;
+      height: 0;
+      width: 0;
+      border: 3px solid transparent;
+      border-top-color: $cms-accent-foreground-color;
+    }
+
+    &.trumbowyg-textual-button {
+      padding-left: 10px !important;
+      padding-right: 18px !important;
+
+      &::after {
+        top: 17px;
+        right: 7px;
+      }
+    }
+  }
+
+  .trumbowyg-right {
+    margin-left: auto;
+
+    &::before {
+      display: none !important;
+    }
+  }
+}
+
+.trumbowyg-dropdown {
+  width: 200px;
+  padding: 4px 0;
+  background: $cms-accent-foreground-color;
+  border: 1px solid $cms-accent-color;
+  overflow: hidden;
+
+
+
+  button {
+    display: block;
+    height: 23px;
+    text-decoration: none;
+    color: $cms-dark-color;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    padding: 2px 0;
+
+    &:hover,
+    &:focus {
+      color: $cms-accent-color;
+      text-decoration: underline;
+    }
+
+    svg {
+      fill: $cms-dark-color;
+      float: left;
+      margin: 0 10px;
+    }
+  }
+}
+
+/* Modal box */
+.trumbowyg-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 11;
+  overflow: hidden;
+  margin: -$button-size 0 0 0;
+}
+
+.trumbowyg-modal-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 15px 62px 15px;
+  z-index: 1;
+  background-color: $cms-dark-color;
+  color: $cms-dark-foreground-color;
+  text-align: right;
+
+  .trumbowyg-modal-title {
+    font-size: 20px;
+    margin: 0 0 15px 0;
+    display: block;
+    text-align: left;
+  }
+
+  label {
+    display: block;
+    position: relative;
+    margin: 0 0 15px 0;
+    overflow: hidden;
+
+    input {
+      margin: 26px 0 0 0;
+    }
+
+    .trumbowyg-input-infos {
+      text-align: left;
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      width: 100%;
+
+      span.trumbowyg-msg-error {
+        float: right;
+        color: #e74c3c;
+      }
+    }
+
+    &.trumbowyg-input-error {
+      color: #e74c3c;
+    }
+
+    &:last-of-type {
+      margin: 0;
+    }
+  }
+
+  .trumbowyg-modal-button {
+    display: inline-block;
+    margin: 25px 0 0 15px;
+    min-width: 100px;
+  }
+}
+
+.trumbowyg-overlay {
+  position: absolute;
+  background-color: rgba($cms-accent-color, 0.5);
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  z-index: 10;
+}
+
+/**
+* Fullscreen
+*/
+body.trumbowyg-body-fullscreen {
+  overflow: hidden;
+}
+
+.trumbowyg-fullscreen {
+  background-color: $cms-accent-color;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 15px;
+  z-index: 99999;
+
+  &.trumbowyg-box,
+  .trumbowyg-editor {
+  }
+  .trumbowyg-editor,
+  .trumbowyg-textarea {
+    height: calc(100% - 25px - 5px) !important;
+    overflow: auto;
+  }
+}
+
+.trumbowyg-editor {
+  a {
+    color: inherit !important;
+    text-decoration: underline !important;
+  }
+
+  object,
+  embed,
+  video,
+  img {
+    max-width: 100%;
+  }
+  video,
+  img {
+    height: auto;
+  }
+  img {
+    cursor: move;
+  }
+
+  /*
+   * lset for resetCss option
+   */
+  &.trumbowyg-reset-css {
+    background: #FEFEFE !important;
+    font-family: "Trebuchet MS", Helvetica, Verdana, sans-serif !important;
+    font-size: 14px !important;
+    line-height: 1.45em !important;
+    white-space: normal !important;
+    color: #333;
+
+    a {
+      color: inherit !important;
+      text-decoration: underline !important;
+    }
+
+    div,
+    p,
+    ul,
+    ol,
+    blockquote {
+      box-shadow: none !important;
+      background: none !important;
+      margin: 0 !important;
+      margin-bottom: 15px !important;
+      line-height: 1.4em !important;
+      border: none;
+    }
+
+    iframe,
+    object,
+    hr {
+      margin-bottom: 15px !important;
+    }
+
+    blockquote {
+      margin-left: 32px !important;
+      font-style: italic !important;
+      color: inherit;
+    }
+
+    ul,
+    ol {
+      padding-left: 20px !important;
+    }
+
+    ul ul,
+    ol ol,
+    ul ol,
+    ol ul {
+      border: none;
+      margin: 2px !important;
+      padding: 0 !important;
+      padding-left: 24px !important;
+    }
+
+    hr {
+      display: block;
+      height: 1px;
+      border: none;
+      border-top: 1px solid $cms-dark-color;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      color: inherit;
+      background: none;
+      margin: 0 !important;
+      padding: 0 !important;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: 32px !important;
+      line-height: 38px !important;
+      margin-bottom: 20px !important;
+    }
+
+    h2 {
+      font-size: 26px !important;
+      line-height: 34px !important;
+      margin-bottom: 15px !important;
+    }
+
+    h3 {
+      font-size: 22px !important;
+      line-height: 28px !important;
+      margin-bottom: 7px !important;
+    }
+
+    h4 {
+      font-size: 16px !important;
+      line-height: 22px !important;
+      margin-bottom: 7px !important;
+    }
+  }
+}

@@ -60,7 +60,7 @@
   .typography p {
     margin: 0 0 25px 0;
     padding: 0; }
-  .typography b {
+  .typography b, .typography strong {
     font-family: 'DIN Pro Medium', sans-serif;
     font-weight: normal; }
   .typography ul {
