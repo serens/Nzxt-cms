@@ -10,13 +10,6 @@ var Nzxt = Nzxt || {
             .append('<div id="cms-loading" class="cms"><div class="spinner"></div></div>')
             .append('<div id="cms-dialog" class="cms accent-background" />');
 
-        // Assign some behavior to buttons in node panels
-        $('.cms.editable .actions a.collapse').click(function (e) {
-            e.preventDefault();
-
-            $(this).find('.fa').toggleClass('fa-toggle-up fa-toggle-down').parent().parent().parent().parent().next('.cms.content').slideToggle(Nzxt.animation.speed, Nzxt.animation.easing);
-        });
-
         // Assign handling for dialogs on node panel action links
         $('.cms.editable a.dialog').click(function (e) {
             e.preventDefault();
