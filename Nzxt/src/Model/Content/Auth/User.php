@@ -23,6 +23,9 @@ class User extends AbstractContent
         'password' => [
             'elementClassname' => \Signature\Html\Form\Element\Password::class,
         ],
+        'role' => [
+            'elementClassname' => \Signature\Html\Form\Element\Select::class,
+        ],
     ];
 
     /**
@@ -46,5 +49,34 @@ class User extends AbstractContent
         }
 
         return parent::setFieldValue($field, $value);
+    }
+
+    /**
+     * Gets the role this user is assigned to.
+     * @return Role
+     */
+    public function getRole(): Role
+    {
+        return Role::find($this->getFieldValue('role'));
+    }
+
+    /**
+     * Insert all user roles to the user-role-select field.
+     * @return array
+     */
+    public function getScaffoldedFormElements(): array
+    {
+        $options = [];
+        $roles   = Role::findAll();
+        $fields  = parent::getScaffoldedFormElements();
+        $userRoleSelect = $fields['role'];
+
+        foreach ($roles as $role) {
+            $options[$role->getID()] = $role->getNode()->getTitle();
+        }
+
+        $userRoleSelect->setOptions($options);
+
+        return $fields;
     }
 }
