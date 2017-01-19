@@ -67,7 +67,7 @@ class Node extends Hidden
         $node = \Nzxt\Model\Node::find((int) $this->getValue());
         $elementID = 'node-select-input-' . $this->getAttribute('id');
         $value = $node
-            ? sprintf('<i class="%s fa-fw"></i> %s (#%d)', $node->getIcon(), $node->getTitle(), $node->getID())
+            ? sprintf('<i class="%s fa-fw"></i> %s (#%d)', $node->getIcon(), htmlspecialchars($node->getTitle()), $node->getID())
             : '&nbsp;';
 
         $userInput = '
@@ -254,10 +254,10 @@ class Node extends Hidden
                 $node->getID(),
                 $node->getIcon(),
                 $node->getID(),
-                $node->getTitle()
+                htmlspecialchars($node->getTitle())
             );
         } else {
-            $renderedItem .= $node->getTitle();
+            $renderedItem .= htmlspecialchars($node->getTitle());
         }
 
         $renderedItem .= $this->renderSitemap($node->getID());

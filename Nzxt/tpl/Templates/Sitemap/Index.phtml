@@ -14,14 +14,14 @@
                     <?php if ($key > 0): ?>
                         <i class="fa fa-angle-right"></i>
                     <?php endif; ?>
-                    <a href="<?= $this->linkBuilder->build('sitemap', ['#node' => $parent->getID()]) ?>"><?= $parent->getTitle() ?></a>
+                    <a href="<?= $this->linkBuilder->build('sitemap', ['#node' => $parent->getID()]) ?>"><?= htmlspecialchars($parent->getTitle()) ?></a>
                 </li>
             <?php endforeach; ?>
             <li>
                 <?php if (count($parents)): ?>
                     <i class="fa fa-angle-right"></i>
                 <?php endif; ?>
-                <?= $this->startNode->getTitle() ?>
+                <?= htmlspecialchars($this->startNode->getTitle()) ?>
             </li>
         </ul>
     <?php endif; ?>

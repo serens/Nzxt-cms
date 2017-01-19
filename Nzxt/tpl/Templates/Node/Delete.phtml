@@ -1,7 +1,7 @@
 <?= $this->renderPartial($this->templateDir . '/Partials/DialogHeader.phtml', ['title' => 'Delete node']) ?>
 
 <p>
-    Are you sure to delete node "<?= $this->node->getTitle() ?>" with id <?= $this->node->getID() ?>? Each sub node will be deleted as well.
+    Are you sure to delete node "<?= htmlspecialchars($this->node->getTitle()) ?>" with id <?= $this->node->getID() ?>? Each sub node will be deleted as well.
 </p>
 
 <form action="<?= $this->form->getAttribute('action') ?>" method="<?= $this->form->getAttribute('method') ?>">

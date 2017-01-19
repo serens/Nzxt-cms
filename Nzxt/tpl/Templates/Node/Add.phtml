@@ -19,7 +19,7 @@
 <?php else: ?>
     <?php if ($this->node): ?>
         <p>
-        The node will be created under "<?= $this->node->getTitle() ?>".
+        The node will be created under "<?= htmlspecialchars($this->node->getTitle()) ?>".
         </p>
     <?php endif; ?>
 

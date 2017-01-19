@@ -2,7 +2,7 @@
 <html class="no-js" lang="en" dir="ltr">
     <head>
         <?php if ($this->hasViewData('node')): ?>
-            <title><?= $this->node->getTitle() ?> | Nzxt cms</title>
+            <title><?= htmlspecialchars($this->node->getTitle()) ?> | Nzxt cms</title>
         <?php else: ?>
             <title>Nzxt cms</title>
         <?php endif; ?>

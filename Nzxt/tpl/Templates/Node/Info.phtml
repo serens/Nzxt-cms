@@ -8,7 +8,7 @@
             <dt>ID</dt>
             <dd><?= $this->node->getID() ?></dd>
             <dt>Title</dt>
-            <dd><?= $this->node->getTitle() ?></dd>
+            <dd><?= htmlspecialchars($this->node->getTitle()) ?></dd>
             <dt>Reference</dt>
             <dd>
                 <?php if ($reference = $this->node->getReferenceNode()): ?>
@@ -19,7 +19,7 @@
                 <?php endif; ?>
             </dd>
             <dt>Section</dt>
-            <dd><?= $this->node->getFieldValue('section') ?></dd>
+            <dd><?= htmlspecialchars($this->node->getFieldValue('section')) ?></dd>
             <dt>Parent</dt>
 
             <?php if ($parent = $this->node->getParent()): ?>
@@ -110,7 +110,7 @@
                 <dt>Description</dt>
                 <dd><?= $content->getDescription() ?></dd>
                 <dt>Class</dt>
-                <dd><?= $this->node->getFieldValue('content_classname') ?></dd>
+                <dd><?= htmlspecialchars($this->node->getFieldValue('content_classname')) ?></dd>
                 <dt>Sections</dt>
                 <dd>
                     <?php if ($section = $content->getAvailableSectionNames()): ?>

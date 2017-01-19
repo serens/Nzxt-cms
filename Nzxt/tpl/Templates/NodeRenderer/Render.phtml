@@ -37,7 +37,7 @@
         <!DOCTYPE html>
         <html class="no-js" lang="en" dir="ltr">
             <head>
-                <title><?= $node->getTitle() ?> | Nzxt cms</title>
+                <title><?= htmlspecialchars($node->getTitle()) ?> | Nzxt cms</title>
 
                 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
                 <meta charset="utf-8">
@@ -83,7 +83,7 @@
                     <?php endforeach; ?>
                     <li>
                         <i class="fa fa-angle-right fa-fw"></i>
-                        <?= $node->getTitle() ?>
+                        <?= htmlspecialchars($node->getTitle()) ?>
                     </li>
                 </ul>
             </div>
@@ -111,22 +111,22 @@
                     </span>
 
                     <span class="cms title">
-                        "<?= $node->getTitle() ?>"
+                        "<?= htmlspecialchars($node->getTitle()) ?>"
                     </span>
                 </a>
             </div>
 
             <div class="cms actions">
-                <a class="cms dialog" href="<?= $this->linkBuilder->build('node:edit', ['#node' => $node->getID()]) ?>" title="Edit node &quot;<?= htmlspecialchars($node->getTitle()) ?>&quot;.">
+                <a class="cms dialog" href="<?= $this->linkBuilder->build('node:edit', ['#node' => $node->getID()]) ?>" title="Edit node <?= $node->getID() ?>.">
                     <i class="fa fa-fw fa-pencil"></i>
                 </a>
 
-                <a class="cms dialog" href="<?= $this->linkBuilder->build('node:delete', ['#node' => $node->getID()]) ?>" title="Delete node &quot;<?= htmlspecialchars($node->getTitle()) ?>&quot;.">
+                <a class="cms dialog" href="<?= $this->linkBuilder->build('node:delete', ['#node' => $node->getID()]) ?>" title="Delete node <?= $node->getID() ?>.">
                     <i class="fa fa-fw fa-trash"></i>
                 </a>
 
                 <?php if (($content && $content->canHaveChildNodes()) || !$content): ?>
-                    <a class="cms dialog" href="<?= $this->linkBuilder->build('node:add', ['#node' => $node->getID()]) ?>" title="Add a new node inside of &quot;<?= htmlspecialchars($node->getTitle()) ?>&quot;.">
+                    <a class="cms dialog" href="<?= $this->linkBuilder->build('node:add', ['#node' => $node->getID()]) ?>" title="Add a new node inside of <?= $node->getID() ?>.">
                         <i class="fa fa-fw fa-plus-circle"></i>
                     </a>
                 <?php endif; ?>
@@ -135,7 +135,7 @@
                     <i class="fa fa-fw fa-sort"></i>
                 </a>
 
-                <a class="cms dialog" href="<?= $this->linkBuilder->build('node:info', ['#node' => $node->getID()]) ?>" title="The ID of this node is <?= $node->getID() ?>.">
+                <a class="cms dialog" href="<?= $this->linkBuilder->build('node:info', ['#node' => $node->getID()]) ?>" title="Show more information of node <?= $node->getID() ?>.">
                     <i class="fa fa-fw fa-info-circle"></i>
                 </a>
             </div>
@@ -151,7 +151,7 @@
 
                 <?php if ($content): ?>
                     <p>
-                        The selected content type "<?= $node->getFieldValue('content_classname') ?>" of this node does not provide any renderable content.
+                        The selected content type "<?= htmlspecialchars($node->getFieldValue('content_classname')) ?>" of this node does not provide any renderable content.
                     </p>
                 <?php else: ?>
                     <p>

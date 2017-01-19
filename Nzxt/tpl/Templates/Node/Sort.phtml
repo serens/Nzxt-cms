@@ -20,7 +20,7 @@
             <?php foreach ($this->siblings as $sibling): ?>
                 <div id="<?= $sibling->getID() ?>">
                     <i class="<?= $sibling->getIcon() ?> fa-fw"></i>
-                    <?= $sibling->getTitle() ?>
+                    <?= htmlspecialchars($sibling->getTitle()) ?>
                 </div>
             <?php endforeach; ?>
         </div>

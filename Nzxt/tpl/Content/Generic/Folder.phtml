@@ -4,7 +4,7 @@
     ?>
 
     <div class="typography folder-listing">
-        <h1>Nodes in folder "<?= $this->node->getTitle() ?>"</h1>
+        <h1>Nodes in folder "<?= htmlspecialchars($this->node->getTitle()) ?>"</h1>
 
         <?php if (0 === count($children)): ?>
             <p>
@@ -33,7 +33,7 @@
                 <i class="fa fa-fw <?= $child->getIcon() ?>"></i>
 
                 <a href="<?= $this->linkBuilder->build('node:view', ['#node' => $child->getID() ]) ?>" class="cms">
-                    <?= $child->getTitle() ?>
+                    <?= htmlspecialchars($child->getTitle()) ?>
                 </a>
             </div>
         <?php endforeach; ?>
