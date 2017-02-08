@@ -130,10 +130,6 @@ var DialogController = DialogController || {
         this.initHeader();
         this.initDialogButtons();
         this.initVendorPlugins();
-    },
-    setEnableBodyScroll: function(enable) {
-        // User inputs which have scrollable content can make use of this function
-        $('body').css('overflowY', enable ? 'auto' : 'hidden');
     }
 };
 

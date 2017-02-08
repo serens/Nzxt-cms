@@ -109,17 +109,6 @@ class Node extends Hidden
                         });
                     });
 
-                    // Disable scrolling the parent window, when hovering over input
-                    $container
-                        .bind("mouseenter", function() {
-                            if ($container.hasClass(panelOpenedClassname)) {
-                                DialogController.setEnableBodyScroll(false);
-                            }
-                        })
-                        .bind("mouseleave", function() {
-                            DialogController.setEnableBodyScroll(true);
-                        });
-
                     $("a", $panel).click(function(e) {
                         var $link = $(this);
 
