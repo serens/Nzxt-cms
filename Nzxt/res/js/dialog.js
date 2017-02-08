@@ -88,37 +88,41 @@ var DialogController = DialogController || {
     },
     initVendorPlugins: function() {
         // RTE Editor
-        $('textarea[data-rte-enabled]').trumbowyg({
-            removeformatPasted: true,
-            btnsDef: {
-                justifyDrop: {
-                    dropdown: ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
-                    ico: 'justifyLeft'
+        if ($.fn.trumbowyg) {
+            $('textarea[data-rte-enabled]').trumbowyg({
+                removeformatPasted: true,
+                btnsDef: {
+                    justifyDrop: {
+                        dropdown: ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+                        ico: 'justifyLeft'
+                    },
+                    listDrop: {
+                        dropdown: ['unorderedList', 'orderedList'],
+                        ico: 'orderedList'
+                    }
                 },
-                listDrop: {
-                    dropdown: ['unorderedList', 'orderedList'],
-                    ico: 'orderedList'
-                }
-            },
-            btns: [
-                ['undo', 'redo'],
-                ['formatting', 'justifyDrop', 'listDrop', 'link'],
-                'btnGrp-design',
-                ['superscript', 'subscript'],
-                ['removeformat'],
-                ['viewHTML', 'fullscreen']
-            ]
-        }).on('tbwinit', function() {
-            $('.trumbowyg-overlay').css({top: 0, botton: 0, height: 'auto'});
-        });
+                btns: [
+                    ['undo', 'redo'],
+                    ['formatting', 'justifyDrop', 'listDrop', 'link'],
+                    'btnGrp-design',
+                    ['superscript', 'subscript'],
+                    ['removeformat'],
+                    ['viewHTML', 'fullscreen']
+                ]
+            }).on('tbwinit', function () {
+                $('.trumbowyg-overlay').css({top: 0, botton: 0, height: 'auto'});
+            });
+        }
 
-        // Init tooltip plugin
-        $('[title]').tooltip({
-            showURL: false,
-            fade: 250,
-            delay: 350,
-            id: 'cms-tooltip'
-        });
+        // Tooltips
+        if ($.fn.tooltip) {
+            $('[title]').tooltip({
+                showURL: false,
+                fade: 250,
+                delay: 350,
+                id: 'cms-tooltip'
+            });
+        }
     },
     init: function() {
         this.isDialog = (parent.Nzxt);
