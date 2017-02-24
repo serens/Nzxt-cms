@@ -226,6 +226,11 @@
  */
 .folder-listing {
   margin: 0 0 25px 0; }
+  .folder-listing .item a {
+    color: #888;
+    text-decoration: underline; }
+    .folder-listing .item a:hover {
+      color: #fff; }
 
 #cms-mask {
   display: none;

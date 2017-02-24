@@ -160,7 +160,14 @@
   margin: 0 0 $cms-typography-element-space 0;
 
   .item {
+    a {
+      color: $cms-dark-foreground-color;
+      text-decoration: underline;
 
+      &:hover {
+        color: $cms-accent-foreground-color;
+      }
+    }
   }
 }
 
