@@ -29,18 +29,19 @@ var Nzxt = Nzxt || {
         });
     },
     showLoading: function(loading) {
-        var $loading = $('#cms-loading');
-        var width = $loading.width();
+        var $loading = $('#cms-loading')
+        var size = $loading.height();
 
         if (loading) {
             $loading
-                .css({right: -width})
+                .css({top: -size})
                 .show()
-                .animate({right: 0}, Nzxt.animation.speed, Nzxt.animation.easing);
+                .animate({top: 0}, Nzxt.animation.speed, Nzxt.animation.easing);
         } else {
+            console.log('stop');
             $loading
-                .css({right: 0})
-                .animate({right: -width}, Nzxt.animation.speed, Nzxt.animation.easing, function() {
+                .css({top: 0})
+                .animate({top: -size}, Nzxt.animation.speed, Nzxt.animation.easing, function() {
                     $(this).hide();
                 });
         }
