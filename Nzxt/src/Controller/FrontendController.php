@@ -44,7 +44,7 @@ class FrontendController extends ActionController
         $node = Node::find($nodeId);
 
         /** @var NodeRenderer $renderer */
-        $renderer = $this->objectProviderService->create(NodeRenderer::class);
+        $renderer = $this->objectProviderService->get(NodeRenderer::class);
 
         // Make current node visible in a global scope
         self::setCurrentNode($node);

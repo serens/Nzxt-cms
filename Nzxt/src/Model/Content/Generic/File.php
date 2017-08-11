@@ -158,7 +158,7 @@ class File extends AbstractContent
     public function getInformation(): array
     {
         /** @var \Nzxt\Service\Image\ImageService $imageService */
-        $imageService = ObjectProviderService::getInstance()->getService('ImageService');
+        $imageService = ObjectProviderService::getInstance()->get('ImageService');
 
         $information = [
             'Size'   => $this->getFilesize() . ' Bytes',

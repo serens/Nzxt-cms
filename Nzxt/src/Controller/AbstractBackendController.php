@@ -32,7 +32,7 @@ class AbstractBackendController extends ActionController
     {
         parent::initAction();
 
-        $this->linkBuilder = $this->objectProviderService->create(LinkBuilder::class);
+        $this->linkBuilder = $this->objectProviderService->get(LinkBuilder::class);
 
         if ($this->requireAuthentication && !$this->authService->getCurrentUser()) {
             $_SESSION['redirect'] = $this->request->getRequestUri();

@@ -42,13 +42,13 @@ class Plugin extends AbstractContent
     public function render(): string
     {
         /** @var Response $response */
-        $response = $this->objectProviderService->create(Response::class);
+        $response = $this->objectProviderService->get(Response::class);
 
         /** @var Request $request */
-        $request = $this->objectProviderService->create(Request::class);
+        $request = $this->objectProviderService->get(Request::class);
 
         /** @var PluginController $controller */
-        $controller = $this->objectProviderService->create($this->getFieldValue('controller_name'));
+        $controller = $this->objectProviderService->get($this->getFieldValue('controller_name'));
 
         if (!$controller instanceof PluginController) {
             throw new \InvalidArgumentException(sprintf(

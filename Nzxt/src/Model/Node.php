@@ -147,7 +147,7 @@ class Node extends AbstractModel
             if ($contentClassname = $this->getFieldValue('content_classname')) {
                 try {
                     /** @var AbstractContent $contentClass */
-                    $contentClass = ObjectProviderService::getInstance()->create($contentClassname);
+                    $contentClass = ObjectProviderService::getInstance()->get($contentClassname);
 
                     if (($result = $contentClass::findByField('node_id', $this->getID())) && $result->count()) {
                         $this->content = $result->getFirst();

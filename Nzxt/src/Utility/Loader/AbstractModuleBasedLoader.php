@@ -19,7 +19,7 @@ abstract class AbstractModuleBasedLoader
     static protected function getModulesToExamine(string $module = null): array
     {
         /** @var \Signature\Module\ModuleService $moduleService */
-        $moduleService = ObjectProviderService::getInstance()->getService('ModuleService');
+        $moduleService = ObjectProviderService::getInstance()->get('ModuleService');
         $registeredModules = $moduleService->getRegisteredModules();
         $modulesToExamine  = [];
 

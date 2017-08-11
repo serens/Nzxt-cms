@@ -27,7 +27,7 @@ class BackendProvider implements ProviderInterface
             }
         }
 
-        $persistenceService = $this->objectProviderService->getService('PersistenceService');
+        $persistenceService = $this->objectProviderService->get('PersistenceService');
 
         $result = User::findByQuery('*', sprintf(
             'username=%s AND active=1',

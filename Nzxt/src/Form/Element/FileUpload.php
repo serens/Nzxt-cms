@@ -36,7 +36,7 @@ class FileUpload extends \Signature\Html\Form\Element\Input
 
         if ($fileData['tmp_name'] != '') {
             /** @var \Signature\Configuration\ConfigurationService $configuration */
-            $configuration = ObjectProviderService::getInstance()->getService('ConfigurationService');
+            $configuration = ObjectProviderService::getInstance()->get('ConfigurationService');
             $uploadDirectory = $configuration->getConfigByPath('Nzxt', 'UploadDirectory');
 
             if (null === $uploadDirectory) {

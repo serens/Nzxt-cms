@@ -7,7 +7,7 @@ use Nzxt\Model\Content\Generic\File;
  * Class ImageService
  * @package Nzxt\Service\Image
  */
-class ImageService extends \Signature\Service\AbstractInjectableService
+class ImageService extends \Signature\Service\AbstractService
 {
     use \Signature\Object\ObjectProviderServiceTrait;
 

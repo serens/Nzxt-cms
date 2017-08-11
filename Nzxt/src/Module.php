@@ -51,8 +51,8 @@ class Module extends AbstractModule
         session_start();
 
         $this->objectProviderService
-            ->registerService('AuthService', AuthService::class)
-            ->registerService('ImageService', ImageService::class);
+            ->register('AuthService', AuthService::class)
+            ->register('ImageService', ImageService::class);
 
         if (null === $this->configurationService->getConfigByPath('Nzxt', 'RootNodeId')) {
             $this->configurationService->setConfigByPath('Nzxt', 'RootNodeId', 1);

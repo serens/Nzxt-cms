@@ -55,7 +55,7 @@ class ContentType extends Hidden
 
                 try {
                     /** @var AbstractContent $contentType */
-                    $contentType = $this->objectProviderService->create($className);
+                    $contentType = $this->objectProviderService->get($className);
 
                     // use the module name of each element to categorize the list
                     $this->contentTypes[$module][] = $contentType;
@@ -74,7 +74,7 @@ class ContentType extends Hidden
      */
     public function render(): string
     {
-        $contentType = $this->getValue() ? $this->objectProviderService->create($this->getValue()) : null;
+        $contentType = $this->getValue() ? $this->objectProviderService->get($this->getValue()) : null;
         $value = $contentType
             ? sprintf('<i class="%s fa-fw"></i> %s', $contentType->getIcon(), $contentType->getTitle())
             : '&nbsp;';

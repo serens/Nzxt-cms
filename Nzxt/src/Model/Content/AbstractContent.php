@@ -245,14 +245,14 @@ abstract class AbstractContent extends AbstractModel
         $objectProviderService = ObjectProviderService::getInstance();
 
         /** @var PhpView $view */
-        $view = $objectProviderService->create(PhpView::class);
+        $view = $objectProviderService->get(PhpView::class);
 
         return $view
             ->setViewData($this->getFieldValues())
             ->setViewData('node', $this->getNode())
-            ->setViewData('user', $objectProviderService->getService('AuthService')->getCurrentUser())
-            ->setViewData('imageService', $objectProviderService->getService('ImageService'))
-            ->setViewData('linkBuilder', $objectProviderService->create(LinkBuilder::class))
+            ->setViewData('user', $objectProviderService->get('AuthService')->getCurrentUser())
+            ->setViewData('imageService', $objectProviderService->get('ImageService'))
+            ->setViewData('linkBuilder', $objectProviderService->get(LinkBuilder::class))
             ->setTemplate($this->resolveViewTemplateName());
     }
 

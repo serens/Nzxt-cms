@@ -9,7 +9,7 @@ use Nzxt\Service\Auth\Provider\ProviderInterface;
  * Class AuthService
  * @package Nzxt\Service\Auth
  */
-class AuthService extends \Signature\Service\AbstractInjectableService
+class AuthService extends \Signature\Service\AbstractService
 {
     use \Signature\Object\ObjectProviderServiceTrait;
     use \Signature\Persistence\PersistenceServiceTrait;
@@ -116,7 +116,7 @@ class AuthService extends \Signature\Service\AbstractInjectableService
     public function getProvider(): ProviderInterface
     {
         if (null === $this->provider) {
-            $this->provider = $this->objectProviderService->create(BackendProvider::class);
+            $this->provider = $this->objectProviderService->get(BackendProvider::class);
         }
 
         return $this->provider;

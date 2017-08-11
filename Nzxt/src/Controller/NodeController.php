@@ -54,7 +54,7 @@ class NodeController extends AbstractBackendController
                     // Different content type selected: Is there already an existing content type entity available?
                     if (!$node->getContent()) {
                         /** @var \Nzxt\Model\Content\AbstractContent $newContent */
-                        if ($newContent = $this->objectProviderService->create($form->getElementValue('content_classname'))) {
+                        if ($newContent = $this->objectProviderService->get($form->getElementValue('content_classname'))) {
                             $newContent
                                 ->setFieldValue('node_id', $node->getID())
                                 ->create();
@@ -123,7 +123,7 @@ class NodeController extends AbstractBackendController
              * Create the new node.
              * @var Node $newNode
              */
-            $newNode = $this->objectProviderService->create(Node::class);
+            $newNode = $this->objectProviderService->get(Node::class);
             $newNode
                 ->setFieldValues([
                     'pid' => $node->getID(),
@@ -140,7 +140,7 @@ class NodeController extends AbstractBackendController
             // Create new content, if content type has been selected
             if ($contentClassname = $form->getElementValue('content_classname')) {
                 /** @var \Nzxt\Model\Content\AbstractContent $newContent */
-                if ($newContent = $this->objectProviderService->create($contentClassname)) {
+                if ($newContent = $this->objectProviderService->get($contentClassname)) {
                     $newContent
                         ->setFieldValue('node_id', $newNode->getID())
                         ->create();

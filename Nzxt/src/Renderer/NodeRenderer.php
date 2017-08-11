@@ -31,10 +31,10 @@ class NodeRenderer
 
         if ($this->authService->isAuthenticated()) {
             /** @var PhpView $view */
-            $view = $this->objectProviderService->create(PhpView::class);
+            $view = $this->objectProviderService->get(PhpView::class);
 
             /** @var LinkBuilder $linkBuilder */
-            $linkBuilder = $this->objectProviderService->create(LinkBuilder::class);
+            $linkBuilder = $this->objectProviderService->get(LinkBuilder::class);
 
             return $view
                 ->setViewData('renderedNodesCount', ++$this->renderedNodesCount)
