@@ -38,7 +38,6 @@ var Nzxt = Nzxt || {
                 .show()
                 .animate({top: 0}, Nzxt.animation.speed, Nzxt.animation.easing);
         } else {
-            console.log('stop');
             $loading
                 .css({top: 0})
                 .animate({top: -size}, Nzxt.animation.speed, Nzxt.animation.easing, function() {
