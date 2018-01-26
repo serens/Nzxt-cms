@@ -277,6 +277,8 @@ class Node extends Hidden
      */
     protected function retrieveChildrenToRender(int $parentId): array
     {
-        return \Nzxt\Model\Node::findByQuery('*', 'pid = ' . $parentId, 'sort')->toArray();
+        $where = (0 === $parentId) ? 'pid IS NULL' : 'pid = ' . $parentId;
+
+        return \Nzxt\Model\Node::findByQuery('*', $where, 'sort')->toArray();
     }
 }
