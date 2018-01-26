@@ -52,7 +52,7 @@
     <?php endif; ?>
 <?php endif; ?>
 
-<div class="cms editable node-<?= $node->getID() ?>">
+<div class="cms editable node-<?= $node->getID() ?> <?= $firstNode ? 'node-root' : 'node-child' ?>">
     <div class="cms border left"></div>
     <div class="cms border top"></div>
     <div class="cms border right"></div>
