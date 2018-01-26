@@ -7,6 +7,7 @@ $accent-darkblue: #0572c6;
 
 $cms-accent-color: $accent-darkblue;
 $cms-accent-foreground-color: #fff;
+$cms-mask-color: #fff;
 
 @if $cms-accent-color == $accent-orange {
   $cms-accent-foreground-color: #232323;

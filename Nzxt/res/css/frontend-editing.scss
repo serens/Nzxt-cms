@@ -7,6 +7,12 @@
 .editable {
   position: relative;
 
+  &.node-root {
+    &.masked {
+      @include filter(blur(15px) grayscale(100%));
+    }
+  }
+
   & .border {
     @include transition(all 0.125s ease);
 
@@ -180,8 +186,8 @@
   bottom: 0;
   width: 100%;
   height: 100%;
-  background-color: black;
-  opacity: 0.9;
+  background-color: $cms-mask-color;
+  opacity: 0.75;
   z-index: 9999;
 }
 

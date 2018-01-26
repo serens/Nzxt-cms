@@ -48,9 +48,16 @@ var Nzxt = Nzxt || {
     showMask: function(visibility) {
         $('body').css('overflow', visibility ? 'hidden' : 'auto'); // Disable scrollbars on body
 
+        var $mask = $('#cms-mask');
+        var $rootNode = $('.node-root').eq(0);
+
         visibility
-            ? $('#cms-mask').show()
-            : $('#cms-mask').fadeOut(this.animation.speed, this.animation.easing);
+            ? $mask.show()
+            : $mask.fadeOut(this.animation.speed, this.animation.easing);
+
+        if ($rootNode) {
+            visibility ? $rootNode.addClass('masked') : $rootNode.removeClass('masked');
+        }
     }
 };
 
