@@ -112,7 +112,7 @@ class NodeController extends AbstractBackendController
         // Basic fields for the node itself
         $form = new Form($this->request, [], [
             new Input('title', 'A new node'),
-            new ContentType('content_classname', '', [], $node),
+            new ContentType('content_classname', $node->getFieldValue('content_classname'), [], $node),
             new Select('section', $node->getFieldValue('section'), [], $sections),
             new Checkbox('hidden', '1'),
             (new \Nzxt\Form\Element\Node('reference', ''))->setResetable(true),
