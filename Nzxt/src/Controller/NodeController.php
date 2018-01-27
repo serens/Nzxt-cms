@@ -68,10 +68,10 @@ class NodeController extends AbstractBackendController
                 ->setFieldValues([
                     'modifier_id' => $this->authService->getCurrentUser()->getNode()->getID(),
                     'title' => $form->getElementValue('title'),
-                    'reference' => $form->getElementValue('reference'),
+                    'reference' => (int) $form->getElementValue('reference'),
                     'section' => $form->getElementValue('section'),
-                    'pid' => $form->getElementValue('pid'),
-                    'hidden' => $form->getElementValue('hidden'),
+                    'pid' => (int) $form->getElementValue('pid'),
+                    'hidden' => (int) $form->getElementValue('hidden'),
                 ])
                 ->save();
 
@@ -130,10 +130,10 @@ class NodeController extends AbstractBackendController
                     'created' => date('Y-m-d H:i:s'),
                     'creator_id' => $this->authService->getCurrentUser()->getNode()->getID(),
                     'title' => $form->getElementValue('title'),
-                    'reference' => $form->getElementValue('reference'),
+                    'reference' => (int) $form->getElementValue('reference'),
                     'content_classname' => $form->getElementValue('content_classname'),
                     'section' => $form->getElementValue('section'),
-                    'hidden' => $form->getElementValue('hidden'),
+                    'hidden' => (int) $form->getElementValue('hidden'),
                 ])
                 ->create();
 
