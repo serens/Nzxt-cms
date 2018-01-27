@@ -214,7 +214,7 @@ abstract class AbstractContent extends AbstractModel
         foreach (array_keys($fieldDescription) as $propertyName) {
             $formElements[$propertyName] = new $fieldDescription[$propertyName]['elementClassname'](
                 $propertyName,
-                $this->getFieldValue($propertyName)
+                (string) $this->getFieldValue($propertyName)
             );
         }
 
