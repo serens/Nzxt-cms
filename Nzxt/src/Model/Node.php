@@ -148,14 +148,15 @@ class Node extends AbstractModel
                 try {
                     /** @var AbstractContent $contentClass */
                     $contentClass = ObjectProviderService::getInstance()->get($contentClassname);
+                    $this->content = $contentClass;
 
                     if (($result = $contentClass::findByField('node_id', $this->getID())) && $result->count()) {
                         $this->content = $result->getFirst();
-                        $this->content->setNode($this);
                     }
                 } catch (\RuntimeException $e) {
-                    $this->content = null;
                 }
+
+                $this->content->setNode($this);
             }
         }
 
