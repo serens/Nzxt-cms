@@ -53,11 +53,11 @@
     font-family: inherit;
     font-weight: normal;
     line-height: 1.5; }
-  .typography h1 {
+  .typography .headline {
     font-size: 36px;
     margin: 0 0 20px -2px;
     line-height: 130%; }
-  .typography p {
+  .typography .paragraph {
     margin: 0 0 25px 0;
     padding: 0; }
   .typography b, .typography strong {

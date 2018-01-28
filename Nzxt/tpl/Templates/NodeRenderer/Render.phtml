@@ -147,16 +147,16 @@
             <?= $renderedContent ?>
         <?php else: ?>
             <div class="typography">
-                <h1><i class="fa fa-warning fa-fw"></i> No renderable content</h1>
+                <div class="headline"><i class="fa fa-warning fa-fw"></i> No renderable content</div>
 
                 <?php if ($content): ?>
-                    <p>
+                    <div class="paragraph">
                         The selected content type "<?= htmlspecialchars($node->getFieldValue('content_classname')) ?>" of this node does not provide any renderable content.
-                    </p>
+                    </div>
                 <?php else: ?>
-                    <p>
+                    <div class="paragraph">
                         The node does not have a content type assigned.
-                    </p>
+                    </div>
                 <?php endif; ?>
             </div>
         <?php endif; ?>

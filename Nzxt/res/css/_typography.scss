@@ -49,13 +49,13 @@
     line-height: $cms-typography-line-height;
   }
 
-  h1 {
+  .headline {
     font-size: 36px;
     margin: 0 0 20px -2px;
     line-height: 130%;
   }
 
-  p {
+  .paragraph {
     margin: 0 0 $cms-typography-element-space 0;
     padding: 0;
   }
