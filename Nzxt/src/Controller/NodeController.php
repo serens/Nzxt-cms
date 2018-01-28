@@ -221,9 +221,9 @@ class NodeController extends AbstractBackendController
      */
     protected function retrieveAvailableSectionNamesOfNode(Node $node): array
     {
-        if ($content = $node->getContent()) {
-            $sections = [];
+        $sections = [];
 
+        if ($content = $node->getContent()) {
             foreach ($content->getAvailableSectionNames() as $sectionName) {
                 $sections[$sectionName] = $sectionName;
             }
