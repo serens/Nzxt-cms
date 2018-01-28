@@ -51,7 +51,7 @@ class Page extends AbstractContent
      * @var array
      * @todo Only for testing! Remove this as section definitions belong into Application module!
      */
-    protected $availableSectionNames = ['main', 'footer', 'copyright'];
+    protected $availableSectionNames = ['pages', 'header', 'main', 'left', 'right', 'footer'];
 
     /**
      * Fills the options for the template-select field.
