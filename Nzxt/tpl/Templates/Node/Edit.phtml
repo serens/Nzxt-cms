@@ -65,14 +65,25 @@
                 <?php if (count($elements = $content->getScaffoldedFormElements())): ?>
                     <?php foreach ($elements as $elementName => $element): ?>
                         <div>
-                            <label for="<?= $elementName ?>">
-                                <?= $fieldDescription[$elementName]['label'] ?>
+                            <?php if ($element instanceof \Signature\Html\Form\Element\Checkbox): ?>
+                                <?= $this->form->getElement($elementName)->setAttribute('id', $elementName)->render() ?>
+                                <label for="<?= $elementName ?>">
+                                    <?= $fieldDescription[$elementName]['label'] ?>
 
-                                <?php if (!empty($fieldDescription[$elementName]['description'])): ?>
-                                    <div class="help-item"><?= htmlspecialchars($fieldDescription[$elementName]['description']) ?></div>
-                                <?php endif; ?>
-                            </label>
-                            <?= $this->form->getElement($elementName)->setAttribute('id', $elementName)->render() ?>
+                                    <?php if (!empty($fieldDescription[$elementName]['description'])): ?>
+                                        <div class="help-item"><?= htmlspecialchars($fieldDescription[$elementName]['description']) ?></div>
+                                    <?php endif; ?>
+                                </label>
+                            <?php else: ?>
+                                <label for="<?= $elementName ?>">
+                                    <?= $fieldDescription[$elementName]['label'] ?>
+
+                                    <?php if (!empty($fieldDescription[$elementName]['description'])): ?>
+                                        <div class="help-item"><?= htmlspecialchars($fieldDescription[$elementName]['description']) ?></div>
+                                    <?php endif; ?>
+                                </label>
+                                <?= $this->form->getElement($elementName)->setAttribute('id', $elementName)->render() ?>
+                            <?php endif; ?>
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>
