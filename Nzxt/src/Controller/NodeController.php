@@ -28,8 +28,8 @@ class NodeController extends AbstractBackendController
         $form = new Form($this->request, [], [
             new Input('title', $node->getFieldValue('title')),
             new ContentType('content_classname', $node->getFieldValue('content_classname')),
-            new Select('section', $node->getFieldValue('section'), [], $sections),
-            new Checkbox('hidden', $node->getFieldValue('hidden')),
+            new Select('section', (string) $node->getFieldValue('section'), [], $sections),
+            new Checkbox('hidden', (bool) $node->getFieldValue('hidden')),
             (new \Nzxt\Form\Element\Node('reference', $node->getFieldValue('reference')))->setResetable(true),
             (new \Nzxt\Form\Element\Node('pid', $node->getFieldValue('pid')))->setParentCheck(true),
         ]);
@@ -113,8 +113,8 @@ class NodeController extends AbstractBackendController
         $form = new Form($this->request, [], [
             new Input('title', 'A new node'),
             new ContentType('content_classname', $node->getFieldValue('content_classname'), [], $node),
-            new Select('section', $node->getFieldValue('section'), [], $sections),
-            new Checkbox('hidden', '1'),
+            new Select('section', (string) $node->getFieldValue('section'), [], $sections),
+            new Checkbox('hidden', true),
             (new \Nzxt\Form\Element\Node('reference', ''))->setResetable(true),
         ]);
 
