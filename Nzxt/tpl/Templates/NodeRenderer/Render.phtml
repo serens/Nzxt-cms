@@ -20,16 +20,19 @@
     /** @var bool $hasBodyTag */
     $hasBodyTag = false !== strripos($renderedContent, '<html');
 
-    $ressources = '
-        <link rel="stylesheet" href="/modules/Nzxt/res/vendor/ionicons-2.0.1/css/ionicons.min.css">
-        <link rel="stylesheet" href="/modules/Nzxt/res/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/modules/Nzxt/res/css/frontend-editing.css">
-
-        <script src="/modules/Nzxt/res/vendor/jquery/jquery.js"></script>
-        <script src="/modules/Nzxt/res/vendor/jquery/jquery.easing.js"></script>
-        <script src="/modules/Nzxt/res/vendor/jquery.tooltip-1.3/jquery.tooltip.js"></script>
-        <script src="/modules/Nzxt/res/js/frontend-editing.js"></script>
-    ';
+    $resources = [
+        'css' => [
+            '<link rel="stylesheet" href="/modules/Nzxt/res/vendor/ionicons-2.0.1/css/ionicons.min.css">',
+            '<link rel="stylesheet" href="/modules/Nzxt/res/vendor/font-awesome-4.7.0/css/font-awesome.min.css">',
+            '<link rel="stylesheet" href="/modules/Nzxt/res/css/frontend-editing.css">',
+        ],
+        'js' => [
+            '<script src="/modules/Nzxt/res/vendor/jquery/jquery.js"></script>',
+            '<script src="/modules/Nzxt/res/vendor/jquery/jquery.easing.js"></script>',
+            '<script src="/modules/Nzxt/res/vendor/jquery.tooltip-1.3/jquery.tooltip.js"></script>',
+            '<script src="/modules/Nzxt/res/js/frontend-editing.js"></script>',
+        ],
+    ];
 ?>
 
 <?php if ($firstNode): ?>
@@ -43,12 +46,12 @@
                 <meta charset="utf-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-                <?= $ressources ?>
+                <?= implode('', $resources['css']) ?>
             </head>
 
             <body class="cms no-template accent-dark">
     <?php else: ?>
-        <?= $ressources ?>
+        <?= implode('', $resources['css']) ?>
     <?php endif; ?>
 <?php endif; ?>
 
@@ -163,7 +166,11 @@
     </div>
 </div>
 
-<?php if (!$renderedContent): ?>
-        </body>
-    </html>
+<?php if ($firstNode): ?>
+    <?= implode('', $resources['js']) ?>
+
+    <?php if (!$hasBodyTag): ?>
+            </body>
+        </html>
+    <?php endif; ?>
 <?php endif; ?>
